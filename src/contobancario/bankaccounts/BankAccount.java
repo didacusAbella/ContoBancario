@@ -6,7 +6,7 @@ import contobancario.model.ClientRecord;
  * The Class BankAccount.
  *
  */
-public class BankAccount {
+public class BankAccount implements Cloneable {
 
 	/**
 	 * Initializes a new bank account.
