@@ -31,7 +31,7 @@ public class BankAccount implements Cloneable {
 	/**
 	 * Deposited the amount in the bank account.
 	 * 
-	 * @param ammount the amount that it must deposit
+	 * @param amount the amount that it must deposit
 	 */
 	public void deposit(double amount) {
 		if (amount < 0) 
@@ -42,7 +42,7 @@ public class BankAccount implements Cloneable {
 	/**
 	 * Withdraw the amount from the bank account.
 	 * 
-	 * @param ammount the amount that it must withdraw
+	 * @param amount the amount that it must withdraw
 	 */
 	public void withdraw(double amount) {
 		if (amount < 0 || amount > this.balance)
@@ -65,7 +65,7 @@ public class BankAccount implements Cloneable {
 	}
 
 	/**
-	 * @param accountholder the account holder to set
+	 * @param accountHolder the account holder to set
 	 */
 	public void setAccountholder(ClientRecord accountHolder) {
 		this.accountHolder = accountHolder;
