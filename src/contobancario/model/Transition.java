@@ -3,6 +3,7 @@ package contobancario.model;
 import java.util.GregorianCalendar;
 
 import contobancario.bankaccounts.BankAccount;
+import contobancario.exceptions.IllegalBankAccountException;
 
 /**
  * The Class Transition.
@@ -49,8 +50,9 @@ public class Transition implements Cloneable {
 	 * "withdraw", the the method withdraw the amount on the origin account.
 	 * 
 	 * @param cmd the command
+	 * @throws IllegalBankAccountException 
 	 */
-	public void run(String cmd) {
+	public void run(String cmd) throws IllegalBankAccountException {
 		switch (cmd) {
 		case "move":
 			this.fromAccount.withdraw(amount);
@@ -63,7 +65,7 @@ public class Transition implements Cloneable {
 			this.fromAccount.withdraw(amount);
 			break;	
 		default:
-			throw new IllegalAccessError("Invalid command!");
+			throw new IllegalArgumentException("Invalid command!");
 		}
 	}
 	
@@ -193,7 +195,7 @@ public class Transition implements Cloneable {
 			return null;
 		}
 	}
-
+	
 	private BankAccount fromAccount;
 	private BankAccount toAccount;
 	private double amount;

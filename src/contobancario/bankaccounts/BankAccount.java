@@ -1,5 +1,6 @@
 package contobancario.bankaccounts;
 
+import contobancario.exceptions.IllegalBankAccountException;
 import contobancario.model.ClientRecord;
 
 /**
@@ -33,7 +34,7 @@ public class BankAccount implements Cloneable {
 	 * 
 	 * @param amount the amount that it must deposit
 	 */
-	public void deposit(double amount) {
+	public void deposit(double amount) throws IllegalBankAccountException {
 		if (amount < 0) 
 			throw new IllegalArgumentException("Can not deposit negative ammount!");
 		this.balance += amount;
@@ -44,7 +45,7 @@ public class BankAccount implements Cloneable {
 	 * 
 	 * @param amount the amount that it must withdraw
 	 */
-	public void withdraw(double amount) {
+	public void withdraw(double amount) throws IllegalBankAccountException {
 		if (amount < 0 || amount > this.balance)
 			throw new IllegalArgumentException("Can not withdraw illegal ammount!");
 		this.balance -= amount;
