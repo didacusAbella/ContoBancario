@@ -4,17 +4,18 @@ import java.util.GregorianCalendar;
 
 /**
  * The Class ClientRecord.
+ * 
  */
 public class ClientRecord implements Cloneable {
-	
+
 	/**
 	 * Initializes a new client.
 	 *
 	 */
 	public ClientRecord() {
-		
+
 	}
-	
+
 	/**
 	 * Initializes a new client with his name, surname, birthday and residence.
 	 * 
@@ -29,7 +30,7 @@ public class ClientRecord implements Cloneable {
 		this.birthday = date;
 		this.residence = residence;
 	}
-	
+
 	/**
 	 * @return the name
 	 */
@@ -94,13 +95,13 @@ public class ClientRecord implements Cloneable {
 	@Override
 	public String toString() {
 		return this.getClass().getSimpleName() + "[" +
-				"name=" + this.name + 
-				", surname=" + this.surname + 
-				", birthday=" + this.birthday + 
-				", residence=" + this.residence + 
+				"name=" + this.name + ", " +
+				"surname=" + this.surname + ", " +
+				"birthday=" + this.birthday + ", " +
+				"residence=" + this.residence + ", " +
 				"]";
 	}
-	
+
 	/**
 	 * Make a "deep" comparison between this object and another object.
 	 * 
