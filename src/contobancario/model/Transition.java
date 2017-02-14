@@ -10,7 +10,7 @@ import contobancario.exceptions.IllegalBankAccountException;
  * 
  */
 public class Transition implements Cloneable {
-	
+
 	/**
 	 * Initialize a new transition.
 	 * 
@@ -21,8 +21,9 @@ public class Transition implements Cloneable {
 		this.amount = 0;
 		this.date = null;
 		this.plafont = 0;
+		this.interest = 0;
 	}
-	
+
 	/**
 	 * Initialize a new transition with his origin account, destination account, amount,
 	 * date and plafond.
@@ -41,13 +42,30 @@ public class Transition implements Cloneable {
 		this.date = date;
 		this.plafont = plafond;
 	}
-	
+
+	/**
+	 * Initialize a new transition with his origin account, plafond and interest.
+	 * 
+	 * @param from the origin account
+	 * @param date the date
+	 * @param plafond the plafond
+	 * @param interest the interest
+	 */
+	public Transition(BankAccount from, GregorianCalendar date, double plafond, 
+			double interest) {
+		this.fromAccount = from;
+		this.date = date;
+		this.plafont = plafond;
+		this.interest = interest;
+	}
+
 	/**
 	 * Executes a command on the bank accounts.
 	 * If insert "move", the method moves the amount from origin account to destination 
 	 * account;
 	 * "pour", the method deposited the amount on the origin account;
-	 * "withdraw", the the method withdraw the amount on the origin account.
+	 * "withdraw", the the method withdraw the amount on the origin account;
+	 * "interest", accredits interest on the account.
 	 * 
 	 * @param cmd the command
 	 * @throws IllegalBankAccountException 
@@ -64,11 +82,14 @@ public class Transition implements Cloneable {
 		case "withdraw":
 			this.fromAccount.withdraw(amount);
 			break;	
+		case "interest":
+			this.fromAccount.deposit((this.fromAccount.getBalance() / 100) * this.interest);
+			break;
 		default:
 			throw new IllegalArgumentException("Invalid command!");
 		}
 	}
-	
+
 	/**
 	 * @return the fromAccount
 	 */
@@ -139,6 +160,20 @@ public class Transition implements Cloneable {
 		this.plafont = plafont;
 	}
 
+	/**
+	 * @return the interest
+	 */
+	public double getInterest() {
+		return interest;
+	}
+
+	/**
+	 * @param interest the interest to set
+	 */
+	public void setInterest(double interest) {
+		this.interest = interest;
+	}
+
 	/** 
 	 * Return a string representation of the structure object.
 	 * 
@@ -174,7 +209,7 @@ public class Transition implements Cloneable {
 				this.date.equals(other.date) &&
 				this.plafont == other.plafont;
 	}
-	
+
 	/**
 	 * Make a "deep" copy of this object.
 	 * 
@@ -195,10 +230,11 @@ public class Transition implements Cloneable {
 			return null;
 		}
 	}
-	
+
 	private BankAccount fromAccount;
 	private BankAccount toAccount;
 	private double amount;
 	private GregorianCalendar date;
 	private double plafont;
+	private double interest;
 }
