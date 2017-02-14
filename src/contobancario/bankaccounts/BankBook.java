@@ -1,40 +1,47 @@
 package contobancario.bankaccounts;
 
 import contobancario.exceptions.IllegalBankAccountException;
+import contobancario.model.ClientRecord;
 
 /**
  * The Class BankBook.
  *
  */
 public class BankBook extends BankAccount implements Cloneable {
-	
+
 	/**
 	 * Initialize a new BankBook.
 	 * 
 	 */
 	public BankBook() {
+		super();
 		this.interest = 0;
 	}
-	
+
 	/**
-	 * Initialize a new BankBook with his interest.
+	 * Initialize a new BankBook with his client, balance and iban and interest.
 	 * 
 	 * @param interest the interest
+	 * @throws IllegalBankAccountException 
 	 */
-	public BankBook(double interest) {
+	public BankBook(ClientRecord client, double balance, String iban, double interest) 
+			throws IllegalBankAccountException {
+		super(client, balance, iban);
+		if (balance < 0)
+			throw new IllegalBankAccountException("Cannot insert negative balance");
 		this.interest = interest;
 	}
-	
+
 	@Override
 	public void withdraw(double amount) throws IllegalBankAccountException {
 		throw new IllegalBankAccountException("Illegal operation on BankBook");
 	}
-	
+
 	@Override
 	public void deposit(double amount) throws IllegalBankAccountException {
 		throw new IllegalBankAccountException("Illegal operation on BankBook");
 	}
-	
+
 	/**
 	 * @return the interest
 	 */
@@ -49,21 +56,11 @@ public class BankBook extends BankAccount implements Cloneable {
 		this.interest = interest;
 	}
 
-	/** 
-	 * Return a string representation of the structure object.
-	 * 
-	 * @return string representation of the object
-	 */
 	@Override
 	public String toString() {
 		return "BankBook [interest=" + interest + "]";
 	}
 
-	/**
-	 * Make a "deep" comparison between this object and another object.
-	 * 
-	 * @return true, if the comparated object have the same class and the same properties
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (!super.equals(obj))
@@ -74,12 +71,7 @@ public class BankBook extends BankAccount implements Cloneable {
 		return
 				this.interest == other.interest;
 	}
-	
-	/**
-	 * Make a "deep" copy of this object.
-	 * 
-	 * @return cloned, the clone of this object
-	 */
+
 	@Override
 	public Object clone() {
 		BankBook cloned = (BankBook) super.clone(); 
@@ -88,5 +80,5 @@ public class BankBook extends BankAccount implements Cloneable {
 	}
 
 	private double interest;
-	
+
 }

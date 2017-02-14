@@ -39,7 +39,7 @@ public class BankAccount implements Cloneable {
 			throw new IllegalArgumentException("Can not deposit negative ammount!");
 		this.balance += amount;
 	}
-	
+
 	/**
 	 * Withdraw the amount from the bank account.
 	 * 
@@ -50,7 +50,7 @@ public class BankAccount implements Cloneable {
 			throw new IllegalArgumentException("Can not withdraw illegal ammount!");
 		this.balance -= amount;
 	}
-	
+
 	/**
 	 * Read the balance of the bank account.
 	 */
@@ -131,7 +131,7 @@ public class BankAccount implements Cloneable {
 				this.balance == other.balance &&
 				this.iban.equals(other.balance);
 	}
-	
+
 	/**
 	 * Make a "deep" copy of this object.
 	 * 
@@ -152,6 +152,6 @@ public class BankAccount implements Cloneable {
 	}
 
 	private ClientRecord accountHolder;
-	private double balance;
+	protected double balance;
 	private String iban;
 }
