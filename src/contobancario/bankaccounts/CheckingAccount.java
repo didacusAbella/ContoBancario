@@ -83,7 +83,7 @@ public class CheckingAccount extends BankAccount {
 
 	@Override
 	public String toString() {
-		return this.getClass().getSimpleName() + "[" +
+		return super.toString() + this.getClass().getSimpleName() + "[" +
 				"trust=" + trust + ", " + 
 				"freeTransition=" + freeTransition + 
 				"]";

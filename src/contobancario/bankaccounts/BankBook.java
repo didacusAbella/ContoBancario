@@ -19,10 +19,12 @@ public class BankBook extends BankAccount implements Cloneable {
 	}
 
 	/**
-	 * Initialize a new BankBook with his client, balance and iban and interest.
 	 * 
-	 * @param interest the interest
-	 * @throws IllegalBankAccountException 
+	 * @param client the client
+	 * @param balance the balance
+	 * @param iban the iban
+	 * @param interest
+	 * @throws IllegalBankAccountException
 	 */
 	public BankBook(ClientRecord client, double balance, String iban, double interest) 
 			throws IllegalBankAccountException {
