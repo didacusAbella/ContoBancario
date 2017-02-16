@@ -3,21 +3,18 @@ package contobancario.bankaccounts;
 import contobancario.exceptions.IllegalBankAccountException;
 import contobancario.model.ClientRecord;
 
-public class CreditCard extends BankAccount implements Cloneable 
-{
+public class CreditCard extends BankAccount implements Cloneable {
 	/**
 	 * 
 	 */
 	public CreditCard()
 	{}
 	
-	public CreditCard(ClientRecord client, double balance, String iban)
-	{
+	public CreditCard(ClientRecord client, double balance, String iban){
 		super(client,balance,iban);
 	}
 	
-	public void withdraw(double amount) throws IllegalBankAccountException
-	{
+	public void withdraw(double amount) throws IllegalBankAccountException{
 		if(amount>=plafond)
 			throw new IllegalBankAccountException("Can not withdraw illegal ammount");
 		super.balance-=amount;
@@ -38,8 +35,7 @@ public class CreditCard extends BankAccount implements Cloneable
 
 	
 	@Override
-	public String toString() 
-	{
+	public String toString() {
 		return super.toString()+this.getClass().getSimpleName() + "[" + 
 				", Plafond=" + this.plafond+ 
 				"]";
@@ -48,8 +44,7 @@ public class CreditCard extends BankAccount implements Cloneable
 
 	
 	@Override
-	public boolean equals(Object obj) 
-	{
+	public boolean equals(Object obj){
 		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
@@ -59,8 +54,7 @@ public class CreditCard extends BankAccount implements Cloneable
 	}
 
 	@Override
-	public Object clone() 
-	{
+	public Object clone() {
 		CreditCard cloned = (CreditCard) super.clone(); 
 		cloned.plafond = this.plafond;
 		return cloned;
