@@ -42,16 +42,10 @@ public class CreditCard extends BankAccount implements Cloneable {
 		super.balance+=amount;
 	}
 	
-	/** 
-	 * @return the plafond
-	 */
 	public double getPlafond() {
 		return plafond;
 	}
 
-	/**
-	 * @param plafond the plafond to set
-	 */
 	public void setPlafond(double plafond) {
 		this.plafond = plafond;
 	}

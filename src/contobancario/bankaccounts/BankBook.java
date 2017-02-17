@@ -3,29 +3,14 @@ package contobancario.bankaccounts;
 import contobancario.exceptions.IllegalBankAccountException;
 import contobancario.model.ClientRecord;
 
-/**
- * The Class BankBook.
- *
- */
 public class BankBook extends BankAccount implements Cloneable {
 
-	/**
-	 * Initialize a new BankBook.
-	 * 
-	 */
+
 	public BankBook() {
 		super();
 		this.interest = 0;
 	}
 
-	/**
-	 * 
-	 * @param client the client
-	 * @param balance the balance
-	 * @param iban the iban
-	 * @param interest
-	 * @throws IllegalBankAccountException
-	 */
 	public BankBook(ClientRecord client, double balance, String iban, double interest) 
 			throws IllegalBankAccountException {
 		super(client, balance, iban);
@@ -44,16 +29,11 @@ public class BankBook extends BankAccount implements Cloneable {
 		throw new IllegalBankAccountException("Illegal operation on BankBook");
 	}
 
-	/**
-	 * @return the interest
-	 */
+
 	public double getInterest() {
 		return interest;
 	}
 
-	/**
-	 * @param interest the interest to set
-	 */
 	public void setInterest(double interest) {
 		this.interest = interest;
 	}

@@ -26,33 +26,21 @@ public class DebitCard extends CreditCard implements Cloneable {
 		super.balance+=amount;
 	}
 	
-	/**
-	 * @return the maximumCredit
-	 */
 	public double getMaximumCredit() {
 		return maximumCredit;
 	}
 
-	/**
-	 * @param maximumCredit the maximumCredit to set
-	 */
 	public void setMaximumCredit(double maximumCredit) {
 		this.maximumCredit = maximumCredit;
 	}
 
-	/* 
-	 * 
-	 */
 	@Override
 	public String toString() {
 		return super.toString()+this.getClass().getSimpleName() + "[" + 
 				", Maximum Credit=" + this.maximumCredit+ 
 				"]";
 	}
-	/*
-	 * 
-	 * 
-	 */
+
 	@Override
 	public boolean equals(Object obj){
 		if (!super.equals(obj))
@@ -63,9 +51,6 @@ public class DebitCard extends CreditCard implements Cloneable {
 		return this.maximumCredit==other.maximumCredit;
 	}
 	
-	/*
-	 * 
-	  */
 	@Override
 	public Object clone() {
 		DebitCard cloned = (DebitCard) super.clone(); 

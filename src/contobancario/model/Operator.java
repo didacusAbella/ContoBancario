@@ -1,39 +1,19 @@
 package contobancario.model;
 
-/**
- * The Class Operator.
- *
- */
 public class Operator {
 
-	/**
-	 * Initialize a new operator.
-	 * 
-	 */
 	public Operator() {
 		
 	}
-	
-	/**
-	 * Initialize a new operator
-	 * 
-	 * @param serialNumber
-	 */
+
 	public Operator(String serialNumber) {
 		this.serialNumber = serialNumber;
 	}
 	
-	
-	/**
-	 * @return the serialNumber
-	 */
 	public String getSerialNumber() {
 		return serialNumber;
 	}
 
-	/**
-	 * @param serialNumber the serialNumber to set
-	 */
 	public void setSerialNumber(String serialNumber) {
 		this.serialNumber = serialNumber;
 	}

@@ -6,14 +6,9 @@ import java.util.Scanner;
 import contobancario.bankaccounts.BankAccount;
 import contobancario.exceptions.IllegalBankAccountException;
 
-/**
- * The Class Transition.
- */
+
 public class Transition implements Cloneable {
 
-	/**
-	 * Initialize a new transition.
-	 */
 	public Transition() {
 		this.fromAccount = null;
 		this.toAccount = null;
@@ -23,16 +18,6 @@ public class Transition implements Cloneable {
 		this.interest = 0;
 	}
 
-	/**
-	 * Initialize a new transition with his origin account, destination account, amount,
-	 * date and plafond.
-	 * 
-	 * @param from the origin account
-	 * @param to the destination account
-	 * @param amount the amount
-	 * @param date the date
-	 * @param plafond the plafond
-	 */
 	public Transition(BankAccount from, BankAccount to, double amount, 
 			GregorianCalendar date, double plafond) {
 		this.fromAccount = from;
@@ -42,14 +27,6 @@ public class Transition implements Cloneable {
 		this.plafont = plafond;
 	}
 
-	/**
-	 * Initialize a new transition with his origin account, plafond and interest.
-	 * 
-	 * @param from the origin account
-	 * @param date the date
-	 * @param plafond the plafond
-	 * @param interest the interest
-	 */
 	public Transition(BankAccount from, GregorianCalendar date, double plafond, 
 			double interest) {
 		this.fromAccount = from;
@@ -58,17 +35,6 @@ public class Transition implements Cloneable {
 		this.interest = interest;
 	}
 
-	/**
-	 * Executes a command on the bank accounts.
-	 * If insert "move", the method moves the amount from origin account to destination 
-	 * account;
-	 * "pour", the method deposited the amount on the origin account;
-	 * "withdraw", the the method withdraw the amount on the origin account;
-	 * "interest", accredits interest on the account.
-	 * 
-	 * @param cmd the command
-	 * @throws IllegalBankAccountException 
-	 */
 	public void run(String cmd) throws IllegalBankAccountException {
 		switch (cmd) {
 		case "move":
@@ -92,95 +58,54 @@ public class Transition implements Cloneable {
 		}
 	}
 
-	/**
-	 * @return the fromAccount
-	 */
 	public BankAccount getFromAccount() {
 		return fromAccount;
 	}
 
-	/**
-	 * @param fromAccount the fromAccount to set
-	 */
 	public void setFromAccount(BankAccount fromAccount) {
 		this.fromAccount = fromAccount;
 	}
 
-	/**
-	 * @return the toAccount
-	 */
 	public BankAccount getToAccount() {
 		return toAccount;
 	}
 
-	/**
-	 * @param toAccount the toAccount to set
-	 */
 	public void setToAccount(BankAccount toAccount) {
 		this.toAccount = toAccount;
 	}
 
-	/**
-	 * @return the amount
-	 */
 	public double getAmount() {
 		return amount;
 	}
 
-	/**
-	 * @param amount the amount to set
-	 */
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
-	/**
-	 * @return the date
-	 */
 	public GregorianCalendar getDate() {
 		return date;
 	}
 
-	/**
-	 * @param date the date to set
-	 */
 	public void setDate(GregorianCalendar date) {
 		this.date = date;
 	}
 
-	/**
-	 * @return the plafont
-	 */
 	public double getPlafont() {
 		return plafont;
 	}
 
-	/**
-	 * @param plafont the plafont to set
-	 */
 	public void setPlafont(double plafont) {
 		this.plafont = plafont;
 	}
 
-	/**
-	 * @return the interest
-	 */
 	public double getInterest() {
 		return interest;
 	}
 
-	/**
-	 * @param interest the interest to set
-	 */
 	public void setInterest(double interest) {
 		this.interest = interest;
 	}
 
-	/** 
-	 * Return a string representation of the structure object.
-	 * 
-	 * @return string representation of the object
-	 */
 	@Override
 	public String toString() {
 		return this.getClass().getSimpleName() + "[" +
@@ -192,11 +117,6 @@ public class Transition implements Cloneable {
 				"]";
 	}
 
-	/**
-	 * Make a "deep" comparison between this object and another object.
-	 * 
-	 * @return true, if the comparated object have the same class and the same properties
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null)
@@ -212,11 +132,6 @@ public class Transition implements Cloneable {
 				this.plafont == other.plafont;
 	}
 
-	/**
-	 * Make a "deep" copy of this object.
-	 * 
-	 * @return cloned, the clone of this object
-	 */
 	@Override
 	public Object clone() {
 		try {

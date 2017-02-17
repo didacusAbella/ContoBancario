@@ -3,30 +3,13 @@ package contobancario.bankaccounts;
 import contobancario.exceptions.IllegalBankAccountException;
 import contobancario.model.ClientRecord;
 
-/**
- * The Class CheckingAccount.
- *
- */
 public class CheckingAccount extends BankAccount {
 
-	/**
-	 * Initialize a new checking account.
-	 * 
-	 */
 	public CheckingAccount() {
 		super();
 		this.trust = 0;
 	}
 
-	/**
-	 * Initialize a new checking account with his client, balance, iban and trust.
-	 * 
-	 * @param client the client
-	 * @param balance the balance
-	 * @param iban the iban
-	 * @param trust the trust
-	 * @throws IllegalBankAccountException
-	 */
 	public CheckingAccount(ClientRecord client, double balance, String iban, double trust) 
 			throws IllegalBankAccountException {
 		super(client, balance, iban);
@@ -51,31 +34,18 @@ public class CheckingAccount extends BankAccount {
 		super.balance -= amount;
 	}
 
-
-	/**
-	 * @return the trust
-	 */
 	public double getTrust() {
 		return trust;
 	}
 
-	/**
-	 * @param trust the trust to set
-	 */
 	public void setTrust(double trust) {
 		this.trust = trust;
 	}
 
-	/**
-	 * @return the freeTransition
-	 */
 	public int getFreeTransition() {
 		return freeTransition;
 	}
 
-	/**
-	 * @param freeTransition the freeTransition to set
-	 */
 	public void setFreeTransition(int freeTransition) {
 		this.freeTransition = freeTransition;
 	}
