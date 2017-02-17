@@ -15,12 +15,32 @@ public class BankAccount implements Cloneable {
 		this.iban = iban;
 	}
 
+<<<<<<< HEAD
+=======
+	/**
+	 * /**
+	 * Deposited the amount in the bank account.
+	 * 
+	 * @param amount
+	 * @throws IllegalBankAccountException
+	 */
+>>>>>>> origin/master
 	public void deposit(double amount) throws IllegalBankAccountException {
 		if (amount < 0) 
 			throw new IllegalArgumentException("Can not deposit negative ammount!");
 		this.balance += amount;
 	}
 
+<<<<<<< HEAD
+=======
+	/**
+	 * /**
+	 * Withdraw the amount from the bank account.
+	 * 
+	 * @param amount
+	 * @throws IllegalBankAccountException
+	 */
+>>>>>>> origin/master
 	public void withdraw(double amount) throws IllegalBankAccountException {
 		if (amount < 0 || amount > this.balance)
 			throw new IllegalArgumentException("Can not withdraw illegal ammount!");
