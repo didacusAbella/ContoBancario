@@ -51,7 +51,7 @@ public class DebitCard extends CreditCard implements Cloneable {
 	
 	/*
 	 * 
-	 */
+	  */
 	@Override
 	public Object clone() {
 		DebitCard cloned = (DebitCard) super.clone(); 
