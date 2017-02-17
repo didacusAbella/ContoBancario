@@ -30,9 +30,11 @@ public class BankAccount implements Cloneable {
 	}
 
 	/**
+	 * /**
 	 * Deposited the amount in the bank account.
 	 * 
-	 * @param amount the amount that it must deposit
+	 * @param amount
+	 * @throws IllegalBankAccountException
 	 */
 	public void deposit(double amount) throws IllegalBankAccountException {
 		if (amount < 0) 
@@ -41,9 +43,11 @@ public class BankAccount implements Cloneable {
 	}
 
 	/**
+	 * /**
 	 * Withdraw the amount from the bank account.
 	 * 
-	 * @param amount the amount that it must withdraw
+	 * @param amount
+	 * @throws IllegalBankAccountException
 	 */
 	public void withdraw(double amount) throws IllegalBankAccountException {
 		if (amount < 0 || amount > this.balance)
