@@ -1,19 +1,18 @@
 package contobancario.model;
 
 import java.util.GregorianCalendar;
+import java.util.Scanner;
 
 import contobancario.bankaccounts.BankAccount;
 import contobancario.exceptions.IllegalBankAccountException;
 
 /**
  * The Class Transition.
- * 
  */
 public class Transition implements Cloneable {
 
 	/**
 	 * Initialize a new transition.
-	 * 
 	 */
 	public Transition() {
 		this.fromAccount = null;
@@ -84,6 +83,9 @@ public class Transition implements Cloneable {
 			break;	
 		case "interest":
 			this.fromAccount.deposit((this.fromAccount.getBalance() / 100) * this.interest);
+			break;
+		case "Plafond":
+			this.setPlafont(plafont);
 			break;
 		default:
 			throw new IllegalArgumentException("Invalid command!");
