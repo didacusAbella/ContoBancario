@@ -26,6 +26,20 @@ public class DebitCard extends CreditCard implements Cloneable {
 		super.balance+=amount;
 	}
 	
+	/**
+	 * @return the maximumCredit
+	 */
+	public double getMaximumCredit() {
+		return maximumCredit;
+	}
+
+	/**
+	 * @param maximumCredit the maximumCredit to set
+	 */
+	public void setMaximumCredit(double maximumCredit) {
+		this.maximumCredit = maximumCredit;
+	}
+
 	/* 
 	 * 
 	 */
