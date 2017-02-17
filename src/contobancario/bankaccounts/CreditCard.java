@@ -19,6 +19,12 @@ public class CreditCard extends BankAccount implements Cloneable {
 			throw new IllegalBankAccountException("Can not withdraw illegal ammount");
 		super.balance-=amount;
 	}	
+	
+	@Override
+	public void deposit(double amount) throws IllegalBankAccountException {
+		super.balance+=amount;
+	}
+	
 	/** 
 	 * @return the plafond
 	 */
