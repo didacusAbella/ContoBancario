@@ -12,11 +12,13 @@ public class DebitCard extends CreditCard implements Cloneable {
 			super(client,balance,iban);
 	}
 
-	@Override
+	@Override// se il prelievo porta il conto a -1000 lancia l'eccezione
 	public void withdraw(double amount) throws IllegalBankAccountException{
-		if(amount>=maximumCredit)
+		variab=super.balance-amount;
+		if(variab<=maximumCredit)
 			throw new IllegalBankAccountException("Can not withdraw illegal ammount");
 		super.balance-=amount;
+		variab=0;
 	}	
 	
 	@Override
@@ -58,4 +60,5 @@ public class DebitCard extends CreditCard implements Cloneable {
 	}
 	
 	private double maximumCredit=-1000;
+	private double variab;
 }
