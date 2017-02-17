@@ -1,5 +1,7 @@
 package contobancario.bankaccounts;
 
+import java.util.GregorianCalendar;
+
 import contobancario.exceptions.IllegalBankAccountException;
 import contobancario.model.ClientRecord;
 
@@ -8,8 +10,8 @@ public class DebitCard extends CreditCard implements Cloneable {
 	public DebitCard(){
 	}
 	
-	public DebitCard(ClientRecord client, double balance, String iban){
-			super(client,balance,iban);
+	public DebitCard(ClientRecord client, double balance, String iban,GregorianCalendar date){
+			super(client,balance,iban,date);
 	}
 
 	@Override//
