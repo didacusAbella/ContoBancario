@@ -1,23 +1,40 @@
 package contobancario.bankaccounts;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import contobancario.exceptions.IllegalBankAccountException;
 import contobancario.model.ClientRecord;
 
 public class CreditCard extends BankAccount implements Cloneable {
-	/**
-	 * 
-	 */
-	public CreditCard()
-	{}
 	
-	public CreditCard(ClientRecord client, double balance, String iban){
-		super(client,balance,iban);
+	public CreditCard(){
 	}
 	
-	public void withdraw(double amount) throws IllegalBankAccountException{
-		if(amount>=plafond)
+	public CreditCard(ClientRecord client, double balance, String iban,GregorianCalendar dateOfIssue){
+		super(client,balance,iban);
+
+	}
+	
+	public void withdraw(double amount,GregorianCalendar DateOfIssue) throws IllegalBankAccountException{
+		dateOfIssue=DateOfIssue;
+		dateOfIssueMonth=DateOfIssue;
+		
+		year=dateOfIssue.get(Calendar.YEAR);
+		month=dateOfIssue.get(Calendar.MONTH)+1;
+		day=dateOfIssue.get(Calendar.DATE);
+		
+		year=dateOfIssueMonth.get(Calendar.YEAR);
+		month=dateOfIssueMonth.get(Calendar.MONTH)+2;
+		day=dateOfIssueMonth.get(Calendar.DATE);
+		
+		if(DateOfIssue.before(dateOfIssueMonth))
+			
+		if(amount>=plafond || DateOfIssue.before(dateOfIssueMonth))
 			throw new IllegalBankAccountException("Can not withdraw illegal ammount");
 		super.balance-=amount;
+		
 	}	
 	
 	@Override
@@ -38,7 +55,6 @@ public class CreditCard extends BankAccount implements Cloneable {
 	public void setPlafond(double plafond) {
 		this.plafond = plafond;
 	}
-
 	
 	@Override
 	public String toString() {
@@ -46,8 +62,6 @@ public class CreditCard extends BankAccount implements Cloneable {
 				", Plafond=" + this.plafond+ 
 				"]";
 	}
-
-
 	
 	@Override
 	public boolean equals(Object obj){
@@ -66,5 +80,8 @@ public class CreditCard extends BankAccount implements Cloneable {
 		return cloned;
 	}
 	
+	private GregorianCalendar dateOfIssue;
+	private GregorianCalendar dateOfIssueMonth;
+	private int year,month,day;
 	private double plafond=2000;
 }

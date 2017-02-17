@@ -84,7 +84,7 @@ public class Transition implements Cloneable {
 		case "interest":
 			this.fromAccount.deposit((this.fromAccount.getBalance() / 100) * this.interest);
 			break;
-		case "Plafond"://penso che va bene
+		case "Plafond":
 			this.setPlafont(plafont);
 			break;
 		default:
