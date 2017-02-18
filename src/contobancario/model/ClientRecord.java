@@ -52,8 +52,8 @@ public class ClientRecord implements Cloneable {
 		return this.getClass().getSimpleName() + "[" +
 				"name=" + this.name + ", " +
 				"surname=" + this.surname + ", " +
-				"birthday=" + this.birthday + ", " +
-				"residence=" + this.residence + ", " +
+				"birthday=" + this.birthday.getTime() + ", " +
+				"residence=" + this.residence +
 				"]";
 	}
 
