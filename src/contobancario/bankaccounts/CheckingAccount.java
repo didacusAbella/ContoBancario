@@ -7,55 +7,79 @@ public class CheckingAccount extends BankAccount {
 
 	public CheckingAccount() {
 		super();
-		this.trust = 0;
+		this.plafond = 0;
+		this.transitions = 0;
 	}
 
-	public CheckingAccount(ClientRecord client, double balance, String iban, double trust) 
+	public CheckingAccount(ClientRecord client, double balance, String iban, double plafond) 
 			throws IllegalBankAccountException {
 		super(client, balance, iban);
-		this.trust = trust;
-		if (balance < trust)
+		this.plafond = plafond;
+		this.transitions = 0;
+		if (plafond > 0) 
+			throw new IllegalBankAccountException("Plafond must be negative!");
+		if (balance < plafond)
 			throw new IllegalBankAccountException("Balance over the bank trust!");
 	}
 
 	@Override
 	public void deposit(double amount) throws IllegalBankAccountException {
 		super.deposit(amount);
-		if (super.balance < this.trust)
-			this.freeTransition--;
+		if (super.balance < 0) {
+			this.transitions++;
+		}
+		else
+			this.transitions = 0;
 	}
 
 	@Override
 	public void withdraw(double amount) throws IllegalBankAccountException {
-		if (amount < 0 || (super.balance - amount) < trust)
+		if (amount < 0 || (super.balance - amount) < plafond)
 			throw new IllegalArgumentException("Can not withdraw illegal ammount!");
-		if (super.balance < this.trust) 
-			freeTransition--;
 		super.balance -= amount;
+		if (super.balance < 0) 
+			transitions++;
+	}
+	
+	@Override
+	public void interest() throws IllegalBankAccountException {
+		throw new IllegalBankAccountException("To a bank account can not be credited interests!");
+	}
+	
+	@Override
+	public void charge() throws IllegalBankAccountException {
+		if (this.transitions > FREE_TRANSITIONS) {
+			super.balance -= FIXED_CHARGE;
+			super.balance -= CHARGE * (this.transitions - FREE_TRANSITIONS);
+		}
+	}
+	
+	@Override
+	public void plafond(double plafond) throws IllegalBankAccountException {
+		this.plafond = plafond;
+	}
+	
+	public double getPlafond() {
+		return plafond;
 	}
 
-	public double getTrust() {
-		return trust;
+	public void setPlafond(double plafond) {
+		this.plafond = plafond;
 	}
 
-	public void setTrust(double trust) {
-		this.trust = trust;
+	public int getTransitions() {
+		return transitions;
 	}
 
-	public int getFreeTransition() {
-		return freeTransition;
+	public void setTransitions(int transitions) {
+		this.transitions = transitions;
 	}
-
-	public void setFreeTransition(int freeTransition) {
-		this.freeTransition = freeTransition;
-	}
-
 
 	@Override
 	public String toString() {
-		return super.toString() + this.getClass().getSimpleName() + "[" +
-				"trust=" + trust + ", " + 
-				"freeTransition=" + freeTransition + 
+		return super.toString() + "[" +
+				"plafond=" + plafond + ", " + 
+				"transitions=" + transitions + 
 				"]";
 	}
 
@@ -67,18 +91,22 @@ public class CheckingAccount extends BankAccount {
 			return false;
 		CheckingAccount other = (CheckingAccount) obj;
 		return
-				this.freeTransition == other.freeTransition &&
-				this.trust == other.trust;
+				this.transitions == other.transitions &&
+				this.plafond == other.plafond;
 	}
 
 	@Override
 	public Object clone() {
 		CheckingAccount cloned = (CheckingAccount) super.clone(); 
-		cloned.freeTransition = this.freeTransition;
-		cloned.trust = this.trust;
+		cloned.transitions = this.transitions;
+		cloned.plafond = this.plafond;
 		return cloned;
 	}
 
-	private double trust;
-	private int freeTransition = 3;
+	private double plafond;
+	private int transitions;
+	
+	private final int FREE_TRANSITIONS = 2;
+	private final double FIXED_CHARGE = 1.50;
+	private final double CHARGE = 0.50;
 }
