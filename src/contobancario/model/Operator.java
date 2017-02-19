@@ -1,23 +1,45 @@
 package contobancario.model;
 
+/**
+ * The class Operator.
+ *
+ */
 public class Operator {
 
+	/**
+	 * Instantiates a new Operator.
+	 * 
+	 */
 	public Operator() {
-		
+		this.serialNumber = null;
 	}
 
+	/**
+	 * Instantiates a new Operator.
+	 * 
+	 */
 	public Operator(String serialNumber) {
 		this.serialNumber = serialNumber;
 	}
-	
+
+	/**
+	 * Gets the serial number.
+	 * 
+	 * @return the serial number
+	 */
 	public String getSerialNumber() {
 		return serialNumber;
 	}
 
+	/**
+	 * Sets the serial number.
+	 * 
+	 * @param serialNumber the serial number
+	 */
 	public void setSerialNumber(String serialNumber) {
 		this.serialNumber = serialNumber;
 	}
-	
+
 	@Override
 	public String toString() {
 		return this.getClass().getSimpleName() +  "[" +
@@ -35,7 +57,7 @@ public class Operator {
 		return
 				this.serialNumber.equals(other.serialNumber);
 	}
-	
+
 	@Override
 	public Object clone() {
 		try {

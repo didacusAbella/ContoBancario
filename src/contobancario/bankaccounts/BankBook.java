@@ -3,14 +3,30 @@ package contobancario.bankaccounts;
 import contobancario.exceptions.IllegalBankAccountException;
 import contobancario.model.ClientRecord;
 
+/**
+ * The class BankBook. 
+ *
+ */
 public class BankBook extends BankAccount {
 
-
+	/**
+	 * Instantiates a new BankBook.
+	 * 
+	 */
 	public BankBook() {
 		super();
 		this.interest = 0;
 	}
 
+	/**
+	 * Instantiates a new BankBook.
+	 * 
+	 * @param client the client
+	 * @param balance the balance
+	 * @param iban the iban
+	 * @param interest the interest
+	 * @throws IllegalBankAccountException
+	 */
 	public BankBook(ClientRecord client, double balance, String iban, double interest) throws IllegalBankAccountException {
 		super(client, balance, iban);
 		if (balance < 0)
@@ -43,10 +59,20 @@ public class BankBook extends BankAccount {
 		throw new IllegalBankAccountException("A BankBook does not have a plafond!");
 	}
 
+	/**
+	 * Gets the interest.
+	 * 
+	 * @return the interest
+	 */
 	public double getInterest() {
 		return interest;
 	}
 
+	/**
+	 * Sets the interest.
+	 * 
+	 * @param interest the interest
+	 */
 	public void setInterest(double interest) {
 		this.interest = interest;
 	}

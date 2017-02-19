@@ -5,8 +5,16 @@ import java.util.GregorianCalendar;
 import contobancario.bankaccounts.BankAccount;
 import contobancario.exceptions.IllegalBankAccountException;
 
+/**
+ * The class Transition.
+ *
+ */
 public class Transition implements Cloneable {
 
+	/**
+	 * Instantiates a new Transition.
+	 * 
+	 */
 	public Transition() {
 		this.account = null;
 		this.toAccount = null;
@@ -15,6 +23,10 @@ public class Transition implements Cloneable {
 		this.plafond = 0;
 	}
 
+	/**
+	 * Instantiates a new Transition.
+	 * 
+	 */
 	public Transition(BankAccount from, BankAccount to, double amount, GregorianCalendar date) {
 		this.account = from;
 		this.toAccount = to;
@@ -22,7 +34,11 @@ public class Transition implements Cloneable {
 		this.date = date;
 		this.plafond = 0;
 	}
-	
+
+	/**
+	 * Instantiates a new Transition.
+	 * 
+	 */
 	public Transition(BankAccount account, double amount, GregorianCalendar date) {
 		this.account = account;
 		this.toAccount = null;
@@ -30,7 +46,11 @@ public class Transition implements Cloneable {
 		this.date = date;
 		this.plafond = 0;
 	}
-	
+
+	/**
+	 * Instantiates a new Transition.
+	 * 
+	 */
 	public Transition(BankAccount account, GregorianCalendar date) {
 		this.account = account;
 		this.toAccount = null;
@@ -38,7 +58,11 @@ public class Transition implements Cloneable {
 		this.date = date;
 		this.plafond = 0;
 	}
-	
+
+	/**
+	 * Instantiates a new Transition.
+	 * 
+	 */
 	public Transition(BankAccount account, GregorianCalendar date, double plafond) {
 		this.account = account;
 		this.toAccount = null;
@@ -47,6 +71,18 @@ public class Transition implements Cloneable {
 		this.plafond = plafond;
 	}
 
+	/**
+	 * Performs the requested operation. 
+	 * If "move", it moves the amount from the origin account to the destination account; 
+	 * "add" pour the amount to the account; 
+	 * "withdraw" withdraw the amount to the account; 
+	 * "interest" accredits the interest to the account; 
+	 * "charge" accredits the charges to the account; 
+	 * "plafond" sets the plafond of the account.
+	 * 
+	 * @param cmd the command
+	 * @throws IllegalBankAccountException
+	 */
 	public void run(String cmd) throws IllegalBankAccountException {
 		switch (cmd) {
 		case "move":
@@ -73,36 +109,94 @@ public class Transition implements Cloneable {
 		}
 	}
 
+	/**
+	 * Gets the origin account.
+	 * 
+	 * @return the origin account
+	 */
 	public BankAccount getAccount() {
 		return account;
 	}
 
-	public void setFromAccount(BankAccount account) {
+	/**
+	 * Sets the origin account.
+	 * 
+	 * @param account the origin account
+	 */
+	public void setAccount(BankAccount account) {
 		this.account = account;
 	}
 
+	/**
+	 * Gets the destination account.
+	 * 
+	 * @return the destination account
+	 */
 	public BankAccount getToAccount() {
 		return toAccount;
 	}
 
+	/**
+	 * Sets the destination account.
+	 * 
+	 * @param toAccount the destination account
+	 */
 	public void setToAccount(BankAccount toAccount) {
 		this.toAccount = toAccount;
 	}
 
+	/**
+	 * Gets the amount.
+	 * 
+	 * @return the amount
+	 */
 	public double getAmount() {
 		return amount;
 	}
 
+	/**
+	 * Sets the amount.
+	 * 
+	 * @param amount the amount
+	 */
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
+	/**
+	 * Gets the date.
+	 * 
+	 * @return the date
+	 */
 	public GregorianCalendar getDate() {
 		return date;
 	}
 
+	/**
+	 * Sets the date.
+	 * 
+	 * @param date the date
+	 */
 	public void setDate(GregorianCalendar date) {
 		this.date = date;
+	}
+
+	/**
+	 * Gets the plafond.
+	 * 
+	 * @return the plafond
+	 */
+	public double getPlafond() {
+		return plafond;
+	}
+
+	/**
+	 * Sets the plafond.
+	 * 
+	 * @param plafond the plafond
+	 */
+	public void setPlafond(double plafond) {
+		this.plafond = plafond;
 	}
 
 	@Override

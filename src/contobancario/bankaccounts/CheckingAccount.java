@@ -3,14 +3,30 @@ package contobancario.bankaccounts;
 import contobancario.exceptions.IllegalBankAccountException;
 import contobancario.model.ClientRecord;
 
+/**
+ * The class CheckingAccount.
+ *
+ */
 public class CheckingAccount extends BankAccount {
 
+	/**
+	 * Instantiates a new CheckingAccount.
+	 * 
+	 */
 	public CheckingAccount() {
 		super();
 		this.plafond = 0;
 		this.transitions = 0;
 	}
 
+	/**
+	 * Instantiates a new CheckingAccount.
+	 * 
+	 * @param client the client
+	 * @param balance the balance
+	 * @param iban the iban
+	 * @throws IllegalBankAccountException
+	 */
 	public CheckingAccount(ClientRecord client, double balance, String iban) throws IllegalBankAccountException {
 		super(client, balance, iban);
 		this.plafond = 0;
@@ -60,18 +76,38 @@ public class CheckingAccount extends BankAccount {
 		this.plafond = plafond;
 	}
 
+	/**
+	 * Gets the plafond.
+	 * 
+	 * @return the plafond
+	 */
 	public double getPlafond() {
 		return plafond;
 	}
 
+	/**
+	 * Sets the plafond.
+	 * 
+	 * @param plafond the plafond
+	 */
 	public void setPlafond(double plafond) {
 		this.plafond = plafond;
 	}
 
+	/**
+	 * Gets the transitions.
+	 * 
+	 * @return the transitions
+	 */
 	public int getTransitions() {
 		return transitions;
 	}
 
+	/**
+	 * Sets the transitions.
+	 * 
+	 * @param transitions
+	 */
 	public void setTransitions(int transitions) {
 		this.transitions = transitions;
 	}

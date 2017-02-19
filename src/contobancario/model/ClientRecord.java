@@ -2,12 +2,30 @@ package contobancario.model;
 
 import java.util.GregorianCalendar;
 
+/**
+ * The class ClientRecord.
+ *
+ */
 public class ClientRecord implements Cloneable {
 
+	/**
+	 * Instantiates a new ClientRecord.
+	 */
 	public ClientRecord() {
-
+		this.name = null;
+		this.surname = null;
+		this.birthday = null;
+		this.residence = null;
 	}
 
+	/**
+	 * Instantiates a new ClientRecord.
+	 * 
+	 * @param name the name
+	 * @param surname the surname
+	 * @param date the birthday
+	 * @param residence the residence
+	 */
 	public ClientRecord(String name, String surname, GregorianCalendar date, String residence) {
 		this.name = name;
 		this.surname = surname;
@@ -15,34 +33,74 @@ public class ClientRecord implements Cloneable {
 		this.residence = residence;
 	}
 
+	/**
+	 * Gets the name.
+	 * 
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Sets the name.
+	 * 
+	 * @param name the name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Gets the surname.
+	 * 
+	 * @return the surname
+	 */
 	public String getSurname() {
 		return surname;
 	}
 
+	/**
+	 * Sets the surname.
+	 * 
+	 * @param surname the surname
+	 */
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
 
+	/**
+	 * Gets the birthday.
+	 * 
+	 * @return the birthday
+	 */
 	public GregorianCalendar getBirthday() {
 		return birthday;
 	}
 
+	/**
+	 * Sets the birthday.
+	 * 
+	 * @param birthday the birthday
+	 */
 	public void setBirthday(GregorianCalendar birthday) {
 		this.birthday = birthday;
 	}
 
+	/**
+	 * Gets the residence.
+	 * 
+	 * @return the residence
+	 */
 	public String getResidence() {
 		return residence;
 	}
 
+	/**
+	 * Sets the residence.
+	 * 
+	 * @param residence the residence
+	 */
 	public void setResidence(String residence) {
 		this.residence = residence;
 	}
