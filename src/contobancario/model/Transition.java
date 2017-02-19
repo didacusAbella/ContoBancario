@@ -1,69 +1,84 @@
 package contobancario.model;
 
 import java.util.GregorianCalendar;
-import java.util.Scanner;
 
 import contobancario.bankaccounts.BankAccount;
 import contobancario.exceptions.IllegalBankAccountException;
 
-
 public class Transition implements Cloneable {
 
 	public Transition() {
-		this.fromAccount = null;
+		this.account = null;
 		this.toAccount = null;
 		this.amount = 0;
 		this.date = null;
-		this.plafont = 0;
-		this.interest = 0;
+		this.plafond = 0;
 	}
 
-	public Transition(BankAccount from, BankAccount to, double amount, 
-			GregorianCalendar date, double plafond) {
-		this.fromAccount = from;
+	public Transition(BankAccount from, BankAccount to, double amount, GregorianCalendar date) {
+		this.account = from;
 		this.toAccount = to;
 		this.amount = amount;
 		this.date = date;
-		this.plafont = plafond;
+		this.plafond = 0;
 	}
-
-	public Transition(BankAccount from, GregorianCalendar date, double plafond, 
-			double interest) {
-		this.fromAccount = from;
+	
+	public Transition(BankAccount account, double amount, GregorianCalendar date) {
+		this.account = account;
+		this.toAccount = null;
+		this.amount = amount;
 		this.date = date;
-		this.plafont = plafond;
-		this.interest = interest;
+		this.plafond = 0;
+	}
+	
+	public Transition(BankAccount account, GregorianCalendar date) {
+		this.account = account;
+		this.toAccount = null;
+		this.amount = 0;
+		this.date = date;
+		this.plafond = 0;
+	}
+	
+	public Transition(BankAccount account, GregorianCalendar date, double plafond) {
+		this.account = account;
+		this.toAccount = null;
+		this.amount = 0;
+		this.date = date;
+		this.plafond = plafond;
 	}
 
 	public void run(String cmd) throws IllegalBankAccountException {
 		switch (cmd) {
 		case "move":
-			this.fromAccount.withdraw(amount);
-			this.toAccount.deposit(amount);			
+			this.account.withdraw(amount);
+			this.toAccount.deposit(amount);	
 			break;
-		case "pour":
-			this.fromAccount.deposit(amount);
+		case "add":
+			this.account.deposit(amount);
 			break;
 		case "withdraw":
-			this.fromAccount.withdraw(amount);
+			this.account.withdraw(amount);
 			break;	
 		case "interest":
-			this.fromAccount.deposit((this.fromAccount.getBalance() / 100) * this.interest);
+			this.account.interest();
 			break;
-		case "Plafond":
-			this.setPlafont(plafont);
+		case "charge":
+			this.account.charge();
+			break;
+		case "plafond":
+			this.account.plafond(plafond);
 			break;
 		default:
 			throw new IllegalArgumentException("Invalid command!");
 		}
 	}
 
-	public BankAccount getFromAccount() {
-		return fromAccount;
+	public BankAccount getAccount() {
+		return account;
 	}
 
-	public void setFromAccount(BankAccount fromAccount) {
-		this.fromAccount = fromAccount;
+	public void setFromAccount(BankAccount account) {
+		this.account = account;
 	}
 
 	public BankAccount getToAccount() {
@@ -90,30 +105,14 @@ public class Transition implements Cloneable {
 		this.date = date;
 	}
 
-	public double getPlafont() {
-		return plafont;
-	}
-
-	public void setPlafont(double plafont) {
-		this.plafont = plafont;
-	}
-
-	public double getInterest() {
-		return interest;
-	}
-
-	public void setInterest(double interest) {
-		this.interest = interest;
-	}
-
 	@Override
 	public String toString() {
 		return this.getClass().getSimpleName() + "[" +
-				"fromAccount=" + fromAccount + ", " +
+				"account=" + account + ", " +
 				"toAccount=" + toAccount + ", " +
 				"amount=" + amount + ", " +
-				"date=" + date + ", " +
-				"plafont=" + plafont + ", " +
+				"date=" + date.getTime() + ", " +
+				"plafond=" + plafond +
 				"]";
 	}
 
@@ -125,22 +124,22 @@ public class Transition implements Cloneable {
 			return false;
 		Transition other = (Transition) obj;
 		return
-				this.fromAccount.equals(other.fromAccount) &&
+				this.account.equals(other.account) &&
 				this.toAccount.equals(other.toAccount) &&
 				this.amount == other.amount &&
 				this.date.equals(other.date) &&
-				this.plafont == other.plafont;
+				this.plafond == other.plafond;
 	}
 
 	@Override
 	public Object clone() {
 		try {
 			Transition cloned = (Transition) super.clone(); 
-			cloned.fromAccount = (BankAccount) this.fromAccount.clone();
+			cloned.account = (BankAccount) this.account.clone();
 			cloned.toAccount = (BankAccount) this.toAccount.clone();
 			cloned.amount = this.amount;
 			cloned.date = (GregorianCalendar) this.date.clone();
-			cloned.plafont = this.plafont;
+			cloned.plafond = this.plafond;
 			return cloned; 
 		}
 		catch (CloneNotSupportedException e) {
@@ -148,10 +147,9 @@ public class Transition implements Cloneable {
 		}
 	}
 
-	private BankAccount fromAccount;
+	private BankAccount account;
 	private BankAccount toAccount;
 	private double amount;
 	private GregorianCalendar date;
-	private double plafont;
-	private double interest;
+	private double plafond;
 }
