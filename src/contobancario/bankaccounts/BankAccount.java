@@ -15,7 +15,6 @@ public class BankAccount implements Cloneable {
 		this.iban = iban;
 	}
 
-
 	public void deposit(double amount) throws IllegalBankAccountException {
 		if (amount < 0) 
 			throw new IllegalArgumentException("Can not deposit negative ammount!");
@@ -28,16 +27,20 @@ public class BankAccount implements Cloneable {
 		this.balance -= amount;
 	}
 
+	public void interest() throws IllegalBankAccountException  {
+		throw new IllegalBankAccountException();
+	}
+
+	public void charge() throws IllegalBankAccountException {
+		throw new IllegalBankAccountException();
+	}
+
+	public void plafond(double plafond) throws IllegalBankAccountException {
+		throw new IllegalBankAccountException();
+	}
+
 	public void read() {
-		System.out.println("Your balance is: " + this.balance);
-	}
-
-	public ClientRecord getAccountHolder() {
-		return accountHolder;
-	}
-
-	public void setAccountholder(ClientRecord accountHolder) {
-		this.accountHolder = accountHolder;
+		System.out.println("Balance is: " + this.balance + "€");
 	}
 
 	public double getBalance() {
@@ -46,6 +49,14 @@ public class BankAccount implements Cloneable {
 
 	public void setBalance(double balance) {
 		this.balance = balance;
+	}
+
+	public ClientRecord getAccountHolder() {
+		return accountHolder;
+	}
+
+	public void setAccountholder(ClientRecord accountHolder) {
+		this.accountHolder = accountHolder;
 	}
 
 	public String getIban() {
@@ -92,7 +103,8 @@ public class BankAccount implements Cloneable {
 		}
 	}
 
-	private ClientRecord accountHolder;
 	protected double balance;
+
+	private ClientRecord accountHolder;
 	private String iban;
 }
