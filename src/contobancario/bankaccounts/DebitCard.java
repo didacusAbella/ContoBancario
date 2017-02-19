@@ -1,45 +1,52 @@
 package contobancario.bankaccounts;
 
-import java.util.GregorianCalendar;
-
 import contobancario.exceptions.IllegalBankAccountException;
 import contobancario.model.ClientRecord;
 
-public class DebitCard extends CreditCard implements Cloneable {
+public class DebitCard extends BankAccount  {
 	
-	public DebitCard(){
+	public DebitCard() {
+		super();
+		this.account = null;
 	}
 	
-	public DebitCard(ClientRecord client, double balance, String iban,GregorianCalendar date){
-			super(client,balance,iban,date);
+	public DebitCard(ClientRecord client, String iban, BankAccount account) throws IllegalBankAccountException {
+		super(client, 0, iban);
+		if (account instanceof CheckingAccount || account instanceof BankBook)
+			this.account = account;
+		else
+			throw new IllegalBankAccountException("A DebitCard can only be connected to a CheckingAccount or BankBook!");
 	}
-
-	@Override//
-	public void withdraw(double amount) throws IllegalBankAccountException{
-		double variab=super.balance-amount;
-		if(variab<=maximumCredit)
-			throw new IllegalBankAccountException("Can not withdraw illegal ammount");
-		super.balance-=amount;
-		variab=0;
-	}	
 	
 	@Override
 	public void deposit(double amount) throws IllegalBankAccountException {
-		super.balance+=amount;
+		this.account.deposit(amount);
 	}
 	
-	public double getMaximumCredit() {
-		return maximumCredit;
+	@Override
+	public void withdraw(double amount) throws IllegalBankAccountException {
+		this.account.withdraw(amount);
 	}
-
-	public void setMaximumCredit(double maximumCredit) {
-		this.maximumCredit = maximumCredit;
+	
+	@Override
+	public void interest() throws IllegalBankAccountException {
+		throw new IllegalBankAccountException("Illegal operation!");
+	}
+	
+	@Override
+	public void charge() throws IllegalBankAccountException {
+		throw new IllegalBankAccountException("Illegal operation!");
+	}
+	
+	@Override
+	public void plafond(double plafond) throws IllegalBankAccountException {
+		throw new IllegalBankAccountException("Illegal operation!");
 	}
 
 	@Override
 	public String toString() {
-		return super.toString()+this.getClass().getSimpleName() + "[" + 
-				", Maximum Credit=" + this.maximumCredit+ 
+		return super.toString() + "[" + 
+				"account=" + account +
 				"]";
 	}
 
@@ -50,15 +57,16 @@ public class DebitCard extends CreditCard implements Cloneable {
 		if (getClass() != obj.getClass())
 			return false;
 		DebitCard other = (DebitCard) obj;
-		return this.maximumCredit==other.maximumCredit;
+		return
+				this.account.equals(other.account);
 	}
 	
 	@Override
 	public Object clone() {
 		DebitCard cloned = (DebitCard) super.clone(); 
-		cloned.maximumCredit = this.maximumCredit;
+		cloned.account = (BankAccount) this.account.clone();
 		return cloned;
 	}
 	
-	private double maximumCredit=-1000;
+	private BankAccount account;
 }

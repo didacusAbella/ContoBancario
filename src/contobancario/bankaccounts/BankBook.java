@@ -3,7 +3,7 @@ package contobancario.bankaccounts;
 import contobancario.exceptions.IllegalBankAccountException;
 import contobancario.model.ClientRecord;
 
-public class BankBook extends BankAccount implements Cloneable {
+public class BankBook extends BankAccount {
 
 
 	public BankBook() {
@@ -11,8 +11,7 @@ public class BankBook extends BankAccount implements Cloneable {
 		this.interest = 0;
 	}
 
-	public BankBook(ClientRecord client, double balance, String iban, double interest) 
-			throws IllegalBankAccountException {
+	public BankBook(ClientRecord client, double balance, String iban, double interest) throws IllegalBankAccountException {
 		super(client, balance, iban);
 		if (balance < 0)
 			throw new IllegalBankAccountException("Cannot insert negative balance");
@@ -20,15 +19,29 @@ public class BankBook extends BankAccount implements Cloneable {
 	}
 
 	@Override
-	public void withdraw(double amount) throws IllegalBankAccountException {
-		throw new IllegalBankAccountException("Illegal operation on BankBook");
+	public void deposit(double amount) throws IllegalBankAccountException {
+		super.deposit(amount);
 	}
 
 	@Override
-	public void deposit(double amount) throws IllegalBankAccountException {
-		throw new IllegalBankAccountException("Illegal operation on BankBook");
+	public void withdraw(double amount) throws IllegalBankAccountException {
+		super.withdraw(amount);
 	}
 
+	@Override
+	public void interest() {
+		super.balance += (super.balance/100) * this.interest;
+	}
+
+	@Override
+	public void charge() throws IllegalBankAccountException {
+		throw new IllegalBankAccountException("A BankBook may not have charges!");
+	}
+
+	@Override
+	public void plafond(double plafond) throws IllegalBankAccountException {
+		throw new IllegalBankAccountException("A BankBook does not have a plafond!");
+	}
 
 	public double getInterest() {
 		return interest;
@@ -40,7 +53,9 @@ public class BankBook extends BankAccount implements Cloneable {
 
 	@Override
 	public String toString() {
-		return "BankBook [interest=" + interest + "]";
+		return super.toString() + "[" +
+				"interest=" + interest + 
+				"]";
 	}
 
 	@Override
@@ -62,5 +77,4 @@ public class BankBook extends BankAccount implements Cloneable {
 	}
 
 	private double interest;
-
 }
