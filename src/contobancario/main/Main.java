@@ -7,12 +7,13 @@ import contobancario.bankaccounts.BankBook;
 import contobancario.bankaccounts.CheckingAccount;
 import contobancario.bankaccounts.DebitCard;
 import contobancario.exceptions.IllegalBankAccountException;
+import contobancario.gui.LoginFrame;
 import contobancario.model.ClientRecord;
 import contobancario.model.Transition;
 
 public class Main {
 	public static void main(String[] args) throws IllegalBankAccountException {
-		ClientRecord client = new ClientRecord("Giorgo", "DiGiorgio", new GregorianCalendar(1996, 5, 4), "Napoli");
+		/*ClientRecord client = new ClientRecord("Giorgo", "DiGiorgio", new GregorianCalendar(1996, 5, 4), "Napoli");
 		
 		CheckingAccount chka1 = new CheckingAccount(client, 1500, "ABC123456789123456");
 		BankBook bnkb1 = new BankBook(client, 2000, "DEF123456789123456", 0.5);
@@ -29,5 +30,8 @@ public class Main {
 		System.out.println(bnkb1);
 		System.out.println(dbtc2);
 		System.out.println(trn1);
+		*/
+		
+		LoginFrame login = new LoginFrame();
 	}
 }
