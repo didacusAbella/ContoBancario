@@ -11,10 +11,9 @@ public class CheckingAccount extends BankAccount {
 		this.transitions = 0;
 	}
 
-	public CheckingAccount(ClientRecord client, double balance, String iban, double plafond) 
-			throws IllegalBankAccountException {
+	public CheckingAccount(ClientRecord client, double balance, String iban) throws IllegalBankAccountException {
 		super(client, balance, iban);
-		this.plafond = plafond;
+		this.plafond = 0;
 		this.transitions = 0;
 		if (plafond > 0) 
 			throw new IllegalBankAccountException("Plafond must be negative!");
@@ -40,12 +39,12 @@ public class CheckingAccount extends BankAccount {
 		if (super.balance < 0) 
 			transitions++;
 	}
-	
+
 	@Override
 	public void interest() throws IllegalBankAccountException {
-		throw new IllegalBankAccountException("To a bank account can not be credited interests!");
+		throw new IllegalBankAccountException("Can not be credited interests to a CheckingAccount!");
 	}
-	
+
 	@Override
 	public void charge() throws IllegalBankAccountException {
 		if (this.transitions > FREE_TRANSITIONS) {
@@ -53,12 +52,14 @@ public class CheckingAccount extends BankAccount {
 			super.balance -= CHARGE * (this.transitions - FREE_TRANSITIONS);
 		}
 	}
-	
+
 	@Override
 	public void plafond(double plafond) throws IllegalBankAccountException {
+		if (plafond > 0)
+			throw new IllegalBankAccountException("A CheckingAccount's plafond must be negative!");
 		this.plafond = plafond;
 	}
-	
+
 	public double getPlafond() {
 		return plafond;
 	}
@@ -105,8 +106,8 @@ public class CheckingAccount extends BankAccount {
 
 	private double plafond;
 	private int transitions;
-	
-	private final int FREE_TRANSITIONS = 2;
-	private final double FIXED_CHARGE = 1.50;
-	private final double CHARGE = 0.50;
+
+	private static int FREE_TRANSITIONS = 2;
+	private static double FIXED_CHARGE = 1.50;
+	private static double CHARGE = 0.50;
 }
