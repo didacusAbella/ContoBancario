@@ -20,14 +20,14 @@ public class Main {
 		DebitCard dbtc1 = new DebitCard(client, "GHI321654987321654", chka1);
 		DebitCard dbtc2 = new DebitCard(client, "LMN123456789321654", bnkb1);
 		
-		//Transition trn1 = new Transition(dbtc1, 500, new GregorianCalendar());
-		//trn1.run("add");
+		Transition trn1 = new Transition(dbtc1, 500, new GregorianCalendar());
+		trn1.run("add");
 		
-		//Transition trn2 = new Transition(dbtc2, 2000, new GregorianCalendar());
-		//trn2.run("withdraw");
+		Transition trn2 = new Transition(dbtc2, 2000, new GregorianCalendar());
+		trn2.run("withdraw");
 		
 		System.out.println(bnkb1);
 		System.out.println(dbtc2);
-		//System.out.println(trn1);
+		System.out.println(trn1);
 	}
 }
