@@ -12,14 +12,16 @@ public class Operator {
 	 */
 	public Operator() {
 		this.serialNumber = null;
+		this.password = null;
 	}
 
 	/**
 	 * Instantiates a new Operator.
 	 * 
 	 */
-	public Operator(String serialNumber) {
+	public Operator(String serialNumber, String password) {
 		this.serialNumber = serialNumber;
+		this.password = password;
 	}
 
 	/**
@@ -40,10 +42,29 @@ public class Operator {
 		this.serialNumber = serialNumber;
 	}
 
+	/**
+	 * Gets the password.
+	 * 
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * Sets the password.
+	 * 
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public String toString() {
 		return this.getClass().getSimpleName() +  "[" +
-				"serialNumber=" + serialNumber + 
+				"serialNumber=" + serialNumber + ", " +
+				"password=" + password +
 				"]";
 	}
 
@@ -55,7 +76,8 @@ public class Operator {
 			return false;
 		Operator other = (Operator) obj;
 		return
-				this.serialNumber.equals(other.serialNumber);
+				this.serialNumber.equals(other.serialNumber) &&
+				this.password.equals(other.password);
 	}
 
 	@Override
@@ -63,6 +85,7 @@ public class Operator {
 		try {
 			Operator cloned = (Operator) super.clone(); 
 			cloned.serialNumber = this.serialNumber;
+			cloned.password = this.password;
 			return cloned;
 		}
 		catch (CloneNotSupportedException e) {
@@ -71,4 +94,5 @@ public class Operator {
 	}
 
 	private String serialNumber;
+	private String password;
 }
