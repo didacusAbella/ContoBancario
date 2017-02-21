@@ -105,7 +105,7 @@ public class CreditCard extends BankAccount {
 		return cloned;
 	}
 
-	private static double CREDIT_PLAFOND;
+	private static  double CREDIT_PLAFOND;
 	private static double FIXED_CHARGE = 2;
 
 	private double credit;
