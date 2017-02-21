@@ -8,12 +8,17 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.PasswordAuthentication;
+import java.util.ArrayList;
 
 import contobancario.model.Operator;
+import contobancario.utils.Generator;
+
 import java.awt.FlowLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -23,67 +28,82 @@ import javax.swing.JTextField;
 
 
 public class LoginFrame extends JFrame{
-	private JPasswordField passwordField;
-
-	/**
-	 * Create the application.
-	 */
-	public LoginFrame() {
+	
+	public LoginFrame(Generator generator) {
+		this.generator = generator;
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
 	private void initialize() {
 		this.setSize(400, 220);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JPanel menuPanel = new JPanel();
-		getContentPane().add(menuPanel, BorderLayout.NORTH);
-		menuPanel.setLayout(new BorderLayout(0, 0));
-		
 		JMenuBar menuBar = new JMenuBar();
+		getContentPane().add(menuBar, BorderLayout.NORTH);
 		
 		JMenu menuFile = new JMenu("File");
 		menuBar.add(menuFile);
 		
-		JMenuItem itemExit = new JMenuItem("Exit");
-		menuFile.add(itemExit);
-		menuPanel.add(menuBar);
+		JMenuItem menuItem = new JMenuItem("Exit");
+		menuFile.add(menuItem);
+		menuItem.addActionListener(l -> System.exit(0));
 		
-		JPanel panel = new JPanel();
-		getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
+		JPanel mainPanel = new JPanel();
+		getContentPane().add(mainPanel, BorderLayout.CENTER);
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		
-		JLabel labelOperator = new JLabel("operator:");
-		labelOperator.setBounds(90, 35, 70, 15);
-		panel.add(labelOperator);
+		JPanel panel1 = new JPanel();
+		mainPanel.add(panel1);
 		
-		JLabel labelPassword = new JLabel("password:");
-		labelPassword.setBounds(90, 75, 80, 15);
-		panel.add(labelPassword);
+		JLabel label1 = new JLabel("Operator: ");
+		panel1.add(label1);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(180, 30, 140, 25);
-		panel.add(comboBox);
+		JComboBox<String> comboBox = new JComboBox<>();
+		panel1.add(comboBox);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(180, 70, 140, 25);
-		panel.add(passwordField);
+		for (Operator o: this.generator.getOperators()) {
+			comboBox.addItem(o.getSerialNumber());
+		}
 		
-		JButton button = new JButton("Login");
-		button.setBounds(150, 125, 100, 25);
-		panel.add(button);
-		itemExit.addActionListener(new ExitListner());
+		JPanel panel2 = new JPanel();
+		mainPanel.add(panel2);
+		
+		JLabel label2 = new JLabel("Password: ");
+		panel2.add(label2);
+		
+		JPasswordField passwordField = new JPasswordField();
+		passwordField.setToolTipText("Test");
+		passwordField.setColumns(10);
+		panel2.add(passwordField);
+		
+		JPanel panel3 = new JPanel();
+		mainPanel.add(panel3);
+		
+		JButton buttonLogin = new JButton("Login");
+		panel3.add(buttonLogin);
+		
+		buttonLogin.addActionListener(l -> {
+			String insertPassword = new String(passwordField.getPassword());
+			String password = null;
+			
+			for (Operator o: generator.getOperators()) {
+				if (o.getSerialNumber().equals(comboBox.getSelectedItem().toString())){
+					password = o.getPassword();
+				}
+			}
+			
+			if (insertPassword.equals(password)) {
+				this.dispose();
+				new OperatorFrame(this.generator);
+			}
+			else
+				JOptionPane.showMessageDialog(null, "Incorrect password!");
+			
+		});
 		
 		this.setVisible(true);
 	}
 	
-	class ExitListner implements ActionListener {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-	}
+	private final Generator generator;
 }
