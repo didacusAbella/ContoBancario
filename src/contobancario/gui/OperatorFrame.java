@@ -13,14 +13,11 @@ import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-
-import contobancario.utils.Generator;
-
 import javax.swing.JRadioButton;
 import java.awt.FlowLayout;
-import javax.swing.JScrollBar;
 import java.awt.GridLayout;
-import java.awt.image.renderable.RenderableImageOp;
+
+import contobancario.utils.Generator;
 
 public class OperatorFrame extends JFrame {
 	public OperatorFrame(Generator generator) {

@@ -6,26 +6,15 @@ import javax.swing.JPasswordField;
 import javax.swing.JPanel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.net.PasswordAuthentication;
-import java.util.ArrayList;
 
 import contobancario.model.Operator;
 import contobancario.utils.Generator;
-
-import java.awt.FlowLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.BoxLayout;
-import java.awt.GridLayout;
-import javax.swing.JTextField;
-
 
 public class LoginFrame extends JFrame{
 	
