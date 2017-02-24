@@ -1,4 +1,4 @@
-package contobancario.utils;
+package contobancario.compare;
 
 import java.util.Comparator;
 
@@ -8,13 +8,9 @@ public class CompareBankAccount implements Comparator<BankAccount> {
 	public int compare(BankAccount bankAccount1, BankAccount bankAccount2) {
 		if (bankAccount1.getBalance() == bankAccount2.getBalance())
 			return 0;
-
-		if (bankAccount1.getBalance() < bankAccount2.getBalance())
+		else if (bankAccount1.getBalance() < bankAccount2.getBalance())
 			return -1;
-
-		if (bankAccount1.getBalance() > bankAccount2.getBalance())
+		else
 			return 1;
-
-		return 0;
 	}
 }
