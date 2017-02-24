@@ -18,8 +18,17 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.awt.BorderLayout;
 
+import contobancario.bankaccounts.BankAccount;
+import contobancario.compare.CompareBankAccount;
+import contobancario.compare.CompareClientRecord;
+import contobancario.compare.CompareOperator;
+import contobancario.compare.CompareTransitions;
+import contobancario.model.ClientRecord;
+import contobancario.model.Operator;
+import contobancario.model.Transition;
 import contobancario.utils.Generator;
 
 public class OperatorFrame extends JFrame {
@@ -73,15 +82,43 @@ public class OperatorFrame extends JFrame {
 		
 		JButton bankAccountButton = new JButton("Bank Accounts");
 		buttonsPanel.add(bankAccountButton);
+		bankAccountButton.addActionListener(l -> {
+			textArea.setText("");
+			ArrayList<BankAccount> sortBankAccount = generator.getBankAccountks();
+			sortBankAccount.sort(new CompareBankAccount());
+			for (BankAccount b: sortBankAccount) 
+				textArea.append(b.toString() + "\n");
+		});
 		
 		JButton operatorsButton = new JButton("Operators");
 		buttonsPanel.add(operatorsButton);
+		operatorsButton.addActionListener(l -> {
+			textArea.setText("");
+			ArrayList<Operator> sortOperator = generator.getOperators();
+			sortOperator.sort(new CompareOperator());
+			for (Operator o: sortOperator)
+				textArea.append(o.toString() + "\n");
+		});
 		
 		JButton clientRecordsButton = new JButton("ClientRecords");
 		buttonsPanel.add(clientRecordsButton);
+		clientRecordsButton.addActionListener(l -> {
+			textArea.setText("");
+			ArrayList<ClientRecord> sortClientRecord = generator.getClientRecords();
+			sortClientRecord.sort(new CompareClientRecord());
+			for (ClientRecord c: sortClientRecord)
+				textArea.append(c.toString() + "\n");
+		});
 		
 		JButton transitionsButton = new JButton("Transitions");
 		buttonsPanel.add(transitionsButton);
+		transitionsButton.addActionListener(l -> {
+			textArea.setText("");
+			ArrayList<Transition> sortTransition = generator.getTransitions();
+			sortTransition.sort(new CompareTransitions());
+			for (Transition t: sortTransition)
+				textArea.append(t.toString() + "\n");
+		});
 		
 		// Transition Panel
 		JPanel transitionsPanel = new JPanel();
@@ -91,7 +128,7 @@ public class OperatorFrame extends JFrame {
 		JPanel topPanel = new JPanel();
 		transitionsPanel.add(topPanel, BorderLayout.NORTH);
 		
-		JRadioButton moveRadio = new JRadioButton("Move");
+		JRadioButton moveRadio = new JRadioButton("Move", true);
 		topPanel.add(moveRadio);
 		
 		JRadioButton depositRadio = new JRadioButton("Deposit");
@@ -162,11 +199,8 @@ public class OperatorFrame extends JFrame {
 		JLabel valueLabel1 = new JLabel("€");
 		bottomMovePanel.add(valueLabel1);
 		
-		movePanel.setVisible(true);
-		
 		// Deposit and Withdraw Panel
 		JPanel depositWithdrowPanel = new JPanel();
-		centralPanel.add(depositWithdrowPanel);
 		depositWithdrowPanel.setLayout(new GridLayout(2, 1, 0, 0));
 		
 		JPanel topDWPanel = new JPanel();
@@ -192,11 +226,8 @@ public class OperatorFrame extends JFrame {
 		JLabel valueLabel2 = new JLabel("€");
 		bottomDWPanel.add(valueLabel2);
 		
-		depositWithdrowPanel.setVisible(false);
-		
 		// Interest e Charge Panel
 		JPanel interestPanel = new JPanel();
-		centralPanel.add(interestPanel);
 		
 		JLabel bankAccountLabel2 = new JLabel("BankAccount: ");
 		interestPanel.add(bankAccountLabel2);
@@ -204,11 +235,8 @@ public class OperatorFrame extends JFrame {
 		JComboBox<String> bankAccountComboBox2 = new JComboBox<>();
 		interestPanel.add(bankAccountComboBox2);
 		
-		interestPanel.setVisible(false);
-
 		// Plafond Panel
 		JPanel plafontPanel = new JPanel();
-		centralPanel.add(plafontPanel);
 		plafontPanel.setLayout(new GridLayout(2, 1, 0, 0));
 		
 		JPanel topPlafondPanel = new JPanel();
@@ -234,7 +262,76 @@ public class OperatorFrame extends JFrame {
 		JLabel valueLabel3 = new JLabel("€");
 		bottomPlafondPanel.add(valueLabel3);
 		
-		plafontPanel.setVisible(false);
+		// Buttons Radio Listners
+		moveRadio.addActionListener(l -> {
+			centralPanel.removeAll();
+			centralPanel.add(movePanel);
+			centralPanel.revalidate();
+			centralPanel.repaint();
+		});
+		
+		depositRadio.addActionListener(l -> {
+			centralPanel.removeAll();
+			centralPanel.add(depositWithdrowPanel);
+			centralPanel.revalidate();
+			centralPanel.repaint();
+		});
+		
+		withdrawRadio.addActionListener(l -> {
+			centralPanel.removeAll();
+			centralPanel.add(depositWithdrowPanel);
+			centralPanel.revalidate();
+			centralPanel.repaint();
+		});
+		
+		interestRadio.addActionListener(l -> {
+			centralPanel.removeAll();
+			centralPanel.add(interestPanel);
+			centralPanel.revalidate();
+			centralPanel.repaint();
+		});
+		
+		chargeRadio.addActionListener(l -> {
+			centralPanel.removeAll();
+			centralPanel.add(interestPanel);
+			centralPanel.revalidate();
+			centralPanel.repaint();
+		});
+		
+		plafondRadio.addActionListener(l -> {
+			centralPanel.removeAll();
+			centralPanel.add(plafontPanel);
+			centralPanel.revalidate();
+			centralPanel.repaint();
+		});
+		
+		// Execute Listner
+		executeButton.addActionListener(l -> {
+			if (moveRadio.isSelected()) {
+				System.out.println("TEST");
+				
+			}
+			if (depositRadio.isSelected()) {
+				System.out.println("TEST");
+
+			}
+			if (withdrawRadio.isSelected()) {
+				System.out.println("TEST");
+
+			}
+			if (interestRadio.isSelected()) {
+				System.out.println("TEST");
+
+			}
+			if (chargeRadio.isSelected()) {
+				System.out.println("TEST");
+
+			}
+			if (plafondRadio.isSelected()) {
+				System.out.println("TEST");
+
+			}
+		});
 		
 		this.setVisible(true);
 	}
