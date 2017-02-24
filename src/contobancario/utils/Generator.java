@@ -11,6 +11,7 @@ import contobancario.bankaccounts.DebitCard;
 import contobancario.exceptions.IllegalBankAccountException;
 import contobancario.model.ClientRecord;
 import contobancario.model.Operator;
+import contobancario.model.Transition;
 
 /**
  * The class Generator
@@ -24,6 +25,7 @@ public class Generator {
 	 */
 	public Generator() throws IllegalBankAccountException {
 		generateOperator();
+		generateClientRecord();
 		generateBankAccout();
 	}
 	
@@ -35,26 +37,33 @@ public class Generator {
 		this.operators.add(operator2);
 	}
 	
-	private void generateBankAccout() throws IllegalBankAccountException {
+	private void generateClientRecord() {
 		ClientRecord client1 = new ClientRecord("Antonio", "Terrano", new GregorianCalendar(1997, 1, 22), "Angri");
 		ClientRecord client2 = new ClientRecord("Macco", "Ferraioli", new GregorianCalendar(1993,  5, 25), "Scafati");
 		ClientRecord client3 = new ClientRecord("Francesca", "Nappi", new GregorianCalendar(1996, 8, 2), "Sant'Egidio del Monte Albino");
 		
-		CheckingAccount checkingAccount1 = new CheckingAccount(client1, 5000, "ABC123456789");
-		CheckingAccount checkingAccount2 = new CheckingAccount(client2, 200, "DEF987654321");
-		CheckingAccount checkingAccount3 = new CheckingAccount(client3, 10000, "GHI789456123");
+		this.clientRecords.add(client1);
+		this.clientRecords.add(client2);
+		this.clientRecords.add(client3);
+	}
+	
+	private void generateBankAccout() throws IllegalBankAccountException {
 		
-		BankBook bankBook1 = new BankBook(client1, 800, "ABC445566778", 0.3);
-		BankBook bankBook2 = new BankBook(client2, 400, "DEF7788996655", 0.5);
-		BankBook bankBook3 = new BankBook(client3, 7000, "GHI321654987", 0.5);
+		CheckingAccount checkingAccount1 = new CheckingAccount(clientRecords.get(0), 5000, "CH1111111111");
+		CheckingAccount checkingAccount2 = new CheckingAccount(clientRecords.get(1), 200, "CH2222222222");
+		CheckingAccount checkingAccount3 = new CheckingAccount(clientRecords.get(2), 10000, "CH3333333333");
 		
-		CreditCard creditCard1 = new CreditCard(client1, 6000, "ABC321654987", 1000);
-		CreditCard creditCard2 = new CreditCard(client2, 2000, "DEF456789123", 500);
-		CreditCard creditCard3 = new CreditCard(client3, 8000, "GHI123654789", 2000);
+		BankBook bankBook1 = new BankBook(clientRecords.get(0), 800, "BB1111111111", 0.3);
+		BankBook bankBook2 = new BankBook(clientRecords.get(1), 400, "BB2222222222", 0.5);
+		BankBook bankBook3 = new BankBook(clientRecords.get(2), 7000, "BB3333333333", 0.5);
 		
-		DebitCard debitCard1 = new DebitCard(client1, "ABC112233445", checkingAccount1);
-		DebitCard debitCard2 = new DebitCard(client2, "DEF789456123", checkingAccount2);
-		DebitCard debitCard3 = new DebitCard(client3, "GHI998877665", bankBook3);
+		CreditCard creditCard1 = new CreditCard(clientRecords.get(0), 6000, "CC1111111111", 1000);
+		CreditCard creditCard2 = new CreditCard(clientRecords.get(1), 2000, "CC2222222222", 500);
+		CreditCard creditCard3 = new CreditCard(clientRecords.get(2), 8000, "CC3333333333", 2000);
+		
+		DebitCard debitCard1 = new DebitCard(clientRecords.get(0), "DC1111111111", checkingAccount1);
+		DebitCard debitCard2 = new DebitCard(clientRecords.get(1), "DC2222222222", checkingAccount2);
+		DebitCard debitCard3 = new DebitCard(clientRecords.get(2), "DC3333333333", bankBook3);
 		
 		this.bankAccountks.add(checkingAccount1);
 		this.bankAccountks.add(checkingAccount2);
@@ -97,7 +106,37 @@ public class Generator {
 	public void setOperators(ArrayList<Operator> operators) {
 		this.operators = operators;
 	}
+	
+	/**
+	 * @return the clientRecords
+	 */
+	public ArrayList<ClientRecord> getClientRecords() {
+		return clientRecords;
+	}
+
+	/**
+	 * @param clientRecords the clientRecords to set
+	 */
+	public void setClientRecords(ArrayList<ClientRecord> clientRecords) {
+		this.clientRecords = clientRecords;
+	}
+
+	/**
+	 * @return the transitions
+	 */
+	public ArrayList<Transition> getTransitions() {
+		return transitions;
+	}
+
+	/**
+	 * @param transitions the transitions to set
+	 */
+	public void setTransitions(ArrayList<Transition> transitions) {
+		this.transitions = transitions;
+	}
 
 	private ArrayList<BankAccount> bankAccountks = new ArrayList<>();
 	private ArrayList<Operator> operators = new ArrayList<>();
+	private ArrayList<ClientRecord> clientRecords = new ArrayList<>();
+	private ArrayList<Transition> transitions = new ArrayList<>();
 }
