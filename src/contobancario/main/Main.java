@@ -11,21 +11,14 @@ import contobancario.gui.OperatorFrame;
 import contobancario.utils.Generator;
 
 public class Main {
-	public static void main(String[] args) throws IllegalBankAccountException, FileNotFoundException, IOException {
-
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			Generator generator = new Generator();
-			OperatorFrame operator = new OperatorFrame(generator);
-			//LoginFrame login = new LoginFrame(generator);
-		} catch (ClassNotFoundException e) {
-			System.err.println("Class Error:" + e);
-		} catch (InstantiationException e) {
-			System.err.println("Installation Error:" + e);
-		} catch (IllegalAccessException e) {
-			System.err.println("Illegal access!" + e);
-		} catch (UnsupportedLookAndFeelException e) {
-			System.err.println("Look and Feel Not Supported!" + e);
-		}
+	public static void main(String[] args) throws IllegalBankAccountException {
+		
+		Generator generator = new Generator();
+		
+		//LoginFrame login = new LoginFrame(generator);
+		OperatorFrame operator = new OperatorFrame(generator);
+		
+		
+	
 	}
 }
