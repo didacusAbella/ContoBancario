@@ -1,23 +1,31 @@
 package contobancario.main;
 
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
-import contobancario.bankaccounts.BankAccount;
-import contobancario.compare.CompareBankAccount;
 import contobancario.exceptions.IllegalBankAccountException;
 import contobancario.gui.LoginFrame;
 import contobancario.gui.OperatorFrame;
 import contobancario.utils.Generator;
 
 public class Main {
-	public static void main(String[] args) throws IllegalBankAccountException {
-		
-		Generator generator = new Generator();
-		
-		//LoginFrame login = new LoginFrame(generator);
-		OperatorFrame operator = new OperatorFrame(generator);
-		
-		
-	
+	public static void main(String[] args) throws IllegalBankAccountException, FileNotFoundException, IOException {
+
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			Generator generator = new Generator();
+			OperatorFrame operator = new OperatorFrame(generator);
+			//LoginFrame login = new LoginFrame(generator);
+		} catch (ClassNotFoundException e) {
+			System.err.println("Class Error:" + e);
+		} catch (InstantiationException e) {
+			System.err.println("Installation Error:" + e);
+		} catch (IllegalAccessException e) {
+			System.err.println("Illegal access!" + e);
+		} catch (UnsupportedLookAndFeelException e) {
+			System.err.println("Look and Feel Not Supported!" + e);
+		}
 	}
 }
