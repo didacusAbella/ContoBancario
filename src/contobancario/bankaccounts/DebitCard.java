@@ -59,6 +59,12 @@ public class DebitCard extends BankAccount  {
 		throw new IllegalBankAccountException("Illegal operation!");
 	}
 
+	@Override
+	public String toFormat() {
+		return super.toFormat() +
+				"\t\t" + "acc: " + this.account.getIban();
+	}
+
 	/**
 	 * Gets the account.
 	 * 

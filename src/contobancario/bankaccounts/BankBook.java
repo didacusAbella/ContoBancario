@@ -59,6 +59,12 @@ public class BankBook extends BankAccount {
 		throw new IllegalBankAccountException("A BankBook does not have a plafond!");
 	}
 
+	@Override
+	public String toFormat() {
+		return super.toFormat() +
+				"\t\t" + "int: " + this.interest + "%";
+	}
+
 	/**
 	 * Gets the interest.
 	 * 

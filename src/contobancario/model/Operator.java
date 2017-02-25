@@ -23,6 +23,17 @@ public class Operator {
 		this.serialNumber = serialNumber;
 		this.password = password;
 	}
+	
+	/**
+	 * Gets the operator's data in a readable format.
+	 * 
+	 * @return the operator's data
+	 */
+	public String toFormat() {
+		return 
+				this.serialNumber + " " +
+				"psw: " + this.password;
+	}
 
 	/**
 	 * Gets the serial number.

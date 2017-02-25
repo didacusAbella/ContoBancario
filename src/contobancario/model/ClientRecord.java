@@ -34,6 +34,21 @@ public class ClientRecord implements Cloneable {
 	}
 
 	/**
+	 * Gets the client's data in a readable format.
+	 * 
+	 * @return the client's data
+	 */
+	public String toFormat() {
+		return
+				this.name + " " +
+				this.surname + "\t\t" +
+				this.birthday.get(GregorianCalendar.DAY_OF_MONTH) + " " +
+				this.birthday.get(GregorianCalendar.MONTH) + " " +
+				this.birthday.get(GregorianCalendar.YEAR) + "\t" +
+				this.residence;
+	}
+
+	/**
 	 * Gets the name.
 	 * 
 	 * @return the name

@@ -62,6 +62,12 @@ public class CreditCard extends BankAccount {
 		throw new IllegalBankAccountException("Illegal operation!");
 	}
 
+	@Override
+	public String toFormat() {
+		return super.toFormat() +
+				"\t\t" + "plf: " + CreditCard.CREDIT_PLAFOND + "€";
+	}
+
 	/**
 	 * Gets the credit.
 	 * 
@@ -105,7 +111,7 @@ public class CreditCard extends BankAccount {
 		return cloned;
 	}
 
-	private static  double CREDIT_PLAFOND;
+	private static double CREDIT_PLAFOND;
 	private static double FIXED_CHARGE = 2;
 
 	private double credit;

@@ -12,7 +12,7 @@ public class BankAccount implements Cloneable {
 	/**
 	 * Instantiates a new BankAccount.
 	 */
-	public BankAccount(){
+	public BankAccount() {
 
 	}
 
@@ -86,6 +86,19 @@ public class BankAccount implements Cloneable {
 	 */
 	public void read() {
 		System.out.println("Balance is: " + this.balance + "€");
+	}
+
+	/**
+	 * Gets the bankaccount's data in a readable format.
+	 * 
+	 * @return the bankaccount's data
+	 */
+	public String toFormat() {
+		return
+				this.iban + " " +
+				this.accountHolder.getName() + " " + 
+				this.accountHolder.getSurname() + "\t" +
+				this.balance + "€";
 	}
 
 	/**
