@@ -61,8 +61,11 @@ public class DebitCard extends BankAccount  {
 
 	@Override
 	public String toFormat() {
-		return super.toFormat() +
-				"\t\t" + "acc: " + this.account.getIban();
+		return 
+				super.getIban() + " " +
+				super.getAccountHolder().getName() + " " + 
+				super.getAccountHolder().getSurname() + "\t" +
+				"\t" + "acc: " + this.account.getIban();
 	}
 
 	/**
