@@ -72,8 +72,9 @@ public class CheckingAccount extends BankAccount {
 	@Override
 	public void plafond(double plafond) throws IllegalBankAccountException {
 		if (plafond > 0)
-			throw new IllegalBankAccountException("A CheckingAccount's plafond must be negative!");
-		this.plafond = plafond;
+			this.plafond -= plafond;
+		else
+			this.plafond = plafond;
 	}
 
 	@Override
