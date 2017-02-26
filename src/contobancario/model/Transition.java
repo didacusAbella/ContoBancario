@@ -26,6 +26,10 @@ public class Transition implements Cloneable {
 	/**
 	 * Instantiates a new Transition.
 	 * 
+	 * @param from the from account
+	 * @param to the to account
+	 * @param amount the amount
+	 * @param date the date
 	 */
 	public Transition(BankAccount from, BankAccount to, double amount, GregorianCalendar date) {
 		this.account = from;
@@ -38,6 +42,9 @@ public class Transition implements Cloneable {
 	/**
 	 * Instantiates a new Transition.
 	 * 
+	 * @param account the account
+	 * @param amount the amount
+	 * @param date the date
 	 */
 	public Transition(BankAccount account, double amount, GregorianCalendar date) {
 		this.account = account;
@@ -50,6 +57,8 @@ public class Transition implements Cloneable {
 	/**
 	 * Instantiates a new Transition.
 	 * 
+	 * @param account the account
+	 * @param date the date
 	 */
 	public Transition(BankAccount account, GregorianCalendar date) {
 		this.account = account;
@@ -62,6 +71,9 @@ public class Transition implements Cloneable {
 	/**
 	 * Instantiates a new Transition.
 	 * 
+	 * @param account the account
+	 * @param date the date
+	 * @param plafond the plafond
 	 */
 	public Transition(BankAccount account, GregorianCalendar date, double plafond) {
 		this.account = account;
@@ -86,27 +98,78 @@ public class Transition implements Cloneable {
 	public void run(String cmd) throws IllegalBankAccountException {
 		switch (cmd) {
 		case "move":
+			this.type = "move";
 			this.account.withdraw(amount);
 			this.toAccount.deposit(amount);	
 			break;
 		case "add":
+			this.type = "add";
 			this.account.deposit(amount);
 			break;
 		case "withdraw":
+			this.type = "withdraw";
 			this.account.withdraw(amount);
 			break;	
 		case "interest":
+			this.type = "interest";
 			this.account.interest();
 			break;
 		case "charge":
+			this.type = "charge";
 			this.account.charge();
 			break;
 		case "plafond":
+			this.type = "plafond";
 			this.account.plafond(plafond);
 			break;
 		default:
 			throw new IllegalArgumentException("Invalid command!");
 		}
+	}
+	
+	/**
+	 * Gets the transition's data in a readable format.
+	 * 
+	 * @return the bankaccount's data
+	 */
+	public String toFormat() {
+		if (this.type.equals("move")) {
+			return 
+					this.date.get(GregorianCalendar.DAY_OF_MONTH) + "/" + (this.date.get(GregorianCalendar.MONTH) + 1) + "/" + this.date.get(GregorianCalendar.YEAR) +
+					" " + this.date.get(GregorianCalendar.HOUR_OF_DAY) + ":" + this.date.get(GregorianCalendar.MINUTE) + " - " +
+					"Move " + this.amount + "€ from " + this.account.getIban() + " to " + this.toAccount.getIban() + ".";
+		}
+		if (this.type.equals("add")) {
+			return
+					this.date.get(GregorianCalendar.DAY_OF_MONTH) + "/" + (this.date.get(GregorianCalendar.MONTH) + 1) + "/" + this.date.get(GregorianCalendar.YEAR) + 
+					" " + this.date.get(GregorianCalendar.HOUR_OF_DAY) + ":" + this.date.get(GregorianCalendar.MINUTE) + " - " +
+					"Deposit " + this.amount + "€ to " +this.account.getIban() + ".";
+		} 
+		if (this.type.equals("withdraw")) {
+			return 
+					this.date.get(GregorianCalendar.DAY_OF_MONTH) + "/" + (this.date.get(GregorianCalendar.MONTH) + 1) + "/" + this.date.get(GregorianCalendar.YEAR) +
+					" " + this.date.get(GregorianCalendar.HOUR_OF_DAY) + ":" + this.date.get(GregorianCalendar.MINUTE) + " - " +
+					"Withdraw " + this.amount + "€ to " +this.account.getIban() + ".";
+		}
+		if (this.type.equals("interest")) {
+			return 
+					this.date.get(GregorianCalendar.DAY_OF_MONTH) + "/" + (this.date.get(GregorianCalendar.MONTH) + 1) + "/" + this.date.get(GregorianCalendar.YEAR) +
+					" " + this.date.get(GregorianCalendar.HOUR_OF_DAY) + ":" + this.date.get(GregorianCalendar.MINUTE) + " - " +
+					"Add Interest to " + this.account.getIban() + ".";
+		}
+		if (this.type.equals("charge")) {
+			return 
+					this.date.get(GregorianCalendar.DAY_OF_MONTH) + "/" + (this.date.get(GregorianCalendar.MONTH) + 1) + "/" + this.date.get(GregorianCalendar.YEAR) +
+					" " + this.date.get(GregorianCalendar.HOUR_OF_DAY) + ":" + this.date.get(GregorianCalendar.MINUTE) + " - " +
+					"Add Charge to " + this.account.getIban() + ".";
+		}
+		if (this.type.equals("plafond")) {
+			return 
+					this.date.get(GregorianCalendar.DAY_OF_MONTH) + "/" + (this.date.get(GregorianCalendar.MONTH) + 1) + "/" + this.date.get(GregorianCalendar.YEAR) + 
+					" " + this.date.get(GregorianCalendar.HOUR_OF_DAY) + ":" + this.date.get(GregorianCalendar.MINUTE) + " - " +
+					"Set " + this.plafond + "€ of plafond to " + this.account.getIban() + ".";
+		}
+		return null;
 	}
 
 	/**
@@ -246,4 +309,5 @@ public class Transition implements Cloneable {
 	private double amount;
 	private GregorianCalendar date;
 	private double plafond;
+	private String type;
 }
