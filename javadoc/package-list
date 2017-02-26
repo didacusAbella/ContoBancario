@@ -1,4 +1,7 @@
 contobancario.bankaccounts
+contobancario.compare
 contobancario.exceptions
+contobancario.gui
 contobancario.main
 contobancario.model
+contobancario.utils
