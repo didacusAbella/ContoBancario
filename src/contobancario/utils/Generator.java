@@ -21,6 +21,7 @@ public class Generator {
 
 	/**
 	 * Instantiates a new Generator.
+	 * 
 	 * @throws IllegalBankAccountException 
 	 */
 	public Generator() throws IllegalBankAccountException {
@@ -30,7 +31,7 @@ public class Generator {
 	}
 	
 	/**
-	 * Add a transition.
+	 * Adds a transition.
 	 * 
 	 * @param transition the transition
 	 */
@@ -39,19 +40,21 @@ public class Generator {
 	}
 
 	/**
-	 * Generate the operators.
+	 * Generates the operators.
 	 * 
 	 */
 	private void generateOperator() {
-		Operator operator1 = new Operator("DI_AV93", "admin");
-		Operator operator2 = new Operator("AN_PA93", "admin");
+		Operator operator1 = new Operator("DI_AV-93", "admin");
+		Operator operator2 = new Operator("AN_PA-93", "admin");
+		Operator operator3 = new Operator("JO_RE-92", "admin");
 
 		this.operators.add(operator1);
 		this.operators.add(operator2);
+		this.operators.add(operator3);
 	}
 
 	/**
-	 * Generate the clients.
+	 * Generates the clients.
 	 * 
 	 */
 	private void generateClientRecord() {
@@ -65,19 +68,19 @@ public class Generator {
 	}
 
 	/**
-	 * Generate the bankaccounts.
+	 * Generates the bankaccounts.
 	 * 
 	 * @throws IllegalBankAccountException
 	 */
 	private void generateBankAccout() throws IllegalBankAccountException {
 
 		CheckingAccount checkingAccount1 = new CheckingAccount(clientRecords.get(0), 5000, "CH1111111111");
-		CheckingAccount checkingAccount2 = new CheckingAccount(clientRecords.get(1), 200, "CH2222222222");
-		CheckingAccount checkingAccount3 = new CheckingAccount(clientRecords.get(2), 9500, "CH3333333333");
+		CheckingAccount checkingAccount2 = new CheckingAccount(clientRecords.get(1), 1000, "CH2222222222");
+		CheckingAccount checkingAccount3 = new CheckingAccount(clientRecords.get(2), 9000, "CH3333333333");
 
 		BankBook bankBook1 = new BankBook(clientRecords.get(0), 800, "BB1111111111", 0.3);
 		BankBook bankBook2 = new BankBook(clientRecords.get(1), 400, "BB2222222222", 0.5);
-		BankBook bankBook3 = new BankBook(clientRecords.get(2), 7000, "BB3333333333", 0.5);
+		BankBook bankBook3 = new BankBook(clientRecords.get(2), 700, "BB3333333333", 0.5);
 
 		CreditCard creditCard1 = new CreditCard(clientRecords.get(0), 6000, "CC1111111111", 1000);
 		CreditCard creditCard2 = new CreditCard(clientRecords.get(1), 2000, "CC2222222222", 500);
