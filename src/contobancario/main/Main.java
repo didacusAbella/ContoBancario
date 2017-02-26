@@ -10,14 +10,17 @@ import contobancario.gui.LoginFrame;
 import contobancario.gui.OperatorFrame;
 import contobancario.utils.Generator;
 
+/**
+ * The class Main.
+ *
+ */
 public class Main {
-	public static void main(String[] args) throws IllegalBankAccountException, FileNotFoundException, IOException {
 
+	public static void main(String[] args) throws IllegalBankAccountException, FileNotFoundException, IOException {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			Generator generator = new Generator();
-			OperatorFrame operator = new OperatorFrame(generator);
-			//LoginFrame login = new LoginFrame(generator);
+			LoginFrame login = new LoginFrame(generator);
 		} catch (ClassNotFoundException e) {
 			System.err.println("Class Error:" + e);
 		} catch (InstantiationException e) {

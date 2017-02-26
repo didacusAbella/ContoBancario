@@ -42,8 +42,8 @@ public class ClientRecord implements Cloneable {
 		return
 				this.name + " " +
 				this.surname + "\t\t" +
-				this.birthday.get(GregorianCalendar.DAY_OF_MONTH) + " " +
-				this.birthday.get(GregorianCalendar.MONTH) + " " +
+				this.birthday.get(GregorianCalendar.DAY_OF_MONTH) + "/" +
+				(this.birthday.get(GregorianCalendar.MONTH) + 1) + "/" +
 				this.birthday.get(GregorianCalendar.YEAR) + "\t" +
 				this.residence;
 	}

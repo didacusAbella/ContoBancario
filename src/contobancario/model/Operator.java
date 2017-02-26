@@ -18,6 +18,8 @@ public class Operator {
 	/**
 	 * Instantiates a new Operator.
 	 * 
+	 * @param serialNumber the serial number
+	 * @param password the password
 	 */
 	public Operator(String serialNumber, String password) {
 		this.serialNumber = serialNumber;
