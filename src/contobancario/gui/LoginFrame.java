@@ -16,14 +16,26 @@ import java.awt.BorderLayout;
 import contobancario.model.Operator;
 import contobancario.utils.Generator;
 
+/**
+ * The class LoginFrame.
+ *
+ */
 public class LoginFrame extends JFrame{
 
+	/**
+	 * Instantiates a new LoginFrame.
+	 * 
+	 * @param generator the generator
+	 */
 	public LoginFrame(Generator generator) {
 		this.generator = generator;
 		initialize();
 	}
 
-
+	/**
+	 * Builds the frame.
+	 * 
+	 */
 	private void initialize() {
 		this.setSize(400, 220);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,7 +75,6 @@ public class LoginFrame extends JFrame{
 		panel2.add(label2);
 
 		JPasswordField passwordField = new JPasswordField();
-		passwordField.setToolTipText("Test");
 		passwordField.setColumns(10);
 		panel2.add(passwordField);
 

@@ -37,12 +37,26 @@ import contobancario.model.Operator;
 import contobancario.model.Transition;
 import contobancario.utils.Generator;
 
+/**
+ * The class OperatorFrame.
+ *
+ */
 public class OperatorFrame extends JFrame {
+	
+	/**
+	 * Instantiates a new OperatorFrame.
+	 * 
+	 * @param generator the generator
+	 */
 	public OperatorFrame(Generator generator) {
 		this.generator = generator;
 		initialize();
 	}
 
+	/**
+	 * Builds the frame.
+	 * 
+	 */
 	private void initialize() {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setSize(670, 520);
@@ -56,6 +70,10 @@ public class OperatorFrame extends JFrame {
 
 		JMenuItem item1 = new JMenuItem("Logout");
 		menuFile.add(item1);
+		item1.addActionListener(l -> {
+			this.dispose();
+			new LoginFrame(generator);
+		});
 
 		JMenuItem item2 = new JMenuItem("Exit");
 		menuFile.add(item2);
@@ -122,7 +140,7 @@ public class OperatorFrame extends JFrame {
 			ArrayList<Transition> sortTransition = generator.getTransitions();
 			sortTransition.sort(new CompareTransitions());
 			for (Transition t: sortTransition)
-				textArea.append(t.toString() + "\n");
+				textArea.append(t.toFormat() + "\n");
 		});
 
 		// Transition Panel
@@ -381,18 +399,45 @@ public class OperatorFrame extends JFrame {
 			if (moveRadio.isSelected()) {
 				if (frombkComboBox.getSelectedItem().equals(tobkComboBox.getSelectedItem()))
 					JOptionPane.showMessageDialog(null, "Invalid Operation!");
+				else {
+					for (BankAccount b1: generator.getBankAccountks()) {
+						if (frombkComboBox.getSelectedItem().equals(b1.getIban())) {
+							for (BankAccount b2: generator.getBankAccountks()) {
+								if (tobkComboBox.getSelectedItem().equals(b2.getIban())) {
+									Transition trn = new Transition(b1, b2, Double.parseDouble(amountTextField1.getText()), new GregorianCalendar());
+									try {
+										trn.run("move");
+										generator.addTransition(trn);
+										JOptionPane.showMessageDialog(null, "Move " + amountTextField1.getText() + "€ from " + 
+												b1.getIban() + "(" + b1.getAccountHolder().getName() + " " + b1.getAccountHolder().getSurname() + ") to " +
+												b2.getIban() + "(" + b2.getAccountHolder().getName() + " " + b2.getAccountHolder().getSurname() + ")." 
+										);
+									} catch (IllegalBankAccountException e) {
+										e.printStackTrace();
+									}
+									break;
+								}
+							}
+							break;
+						}
+					}
+				}
 
 			}
 			if (depositRadio.isSelected()) {
 				for (BankAccount b: generator.getBankAccountks()) {
 					if (bankAccountComboBox1.getSelectedItem().equals(b.getIban())) {
 						Transition trn = new Transition(b, Double.parseDouble(amountTextField2.getText()), new GregorianCalendar());
-						generator.addTransition(trn);
 						try {
 							trn.run("add");
+							generator.addTransition(trn);
+							JOptionPane.showMessageDialog(null, "Deposit " + amountTextField2.getText() + "€ to " + 
+									b.getIban() + "(" + b.getAccountHolder().getName() + " " + b.getAccountHolder().getSurname() + ")."
+							);
 						} catch (IllegalBankAccountException e) {
 							e.printStackTrace();
 						}
+						break;
 					}
 				}
 
@@ -401,12 +446,16 @@ public class OperatorFrame extends JFrame {
 				for (BankAccount b: generator.getBankAccountks()) {
 					if (bankAccountComboBox2.getSelectedItem().equals(b.getIban())) {
 						Transition trn = new Transition(b, Double.parseDouble(amountTextField3.getText()), new GregorianCalendar());
-						generator.addTransition(trn);
 						try {
 							trn.run("withdraw");
+							generator.addTransition(trn);
+							JOptionPane.showMessageDialog(null, "Withdraw " + amountTextField3.getText() + "€ to " + 
+									b.getIban() + "(" + b.getAccountHolder().getName() + " " + b.getAccountHolder().getSurname() + ")."
+							);
 						} catch (IllegalBankAccountException e) {
 							e.printStackTrace();
 						}
+						break;
 					}
 				}
 
@@ -415,12 +464,16 @@ public class OperatorFrame extends JFrame {
 				for (BankAccount b: generator.getBankAccountks()) {
 					if (bankAccountComboBox3.getSelectedItem().equals(b.getIban())) {
 						Transition trn = new Transition(b, new GregorianCalendar());
-						generator.addTransition(trn);
 						try {
 							trn.run("interest");
+							generator.addTransition(trn);
+							JOptionPane.showMessageDialog(null, "Add Interest to " +
+									b.getIban() + "(" + b.getAccountHolder().getName() + " " + b.getAccountHolder().getSurname() + ")."
+							);
 						} catch (IllegalBankAccountException e) {
 							e.printStackTrace();
 						}
+						break;
 					}
 				}
 			}
@@ -428,25 +481,33 @@ public class OperatorFrame extends JFrame {
 				for (BankAccount b: generator.getBankAccountks()) {
 					if (bankAccountComboBox4.getSelectedItem().equals(b.getIban())) {
 						Transition trn = new Transition(b, new GregorianCalendar());
-						generator.addTransition(trn);
 						try {
 							trn.run("charge");
+							generator.addTransition(trn);
+							JOptionPane.showMessageDialog(null, "Add Charge to " +
+									b.getIban() + "(" + b.getAccountHolder().getName() + " " + b.getAccountHolder().getSurname() + ")."
+							);
 						} catch (IllegalBankAccountException e) {
 							e.printStackTrace();
 						}
+						break;
 					}
 				}
 			}
 			if (plafondRadio.isSelected()) {
 				for (BankAccount b: generator.getBankAccountks()) {
 					if (bankAccountComboBox5.getSelectedItem().equals(b.getIban())) {
-						Transition trn = new Transition(b, Double.parseDouble(amountTextField4.getText()), new GregorianCalendar());
-						generator.addTransition(trn);
+						Transition trn = new Transition(b, new GregorianCalendar(), Double.parseDouble(amountTextField4.getText()));
 						try {
 							trn.run("plafond");
+							generator.addTransition(trn);
+							JOptionPane.showMessageDialog(null, "Set " + amountTextField4.getText() + "€ of plafondo to " +
+									b.getIban() + "(" + b.getAccountHolder().getName() + " " + b.getAccountHolder().getSurname() + ")."
+							);
 						} catch (IllegalBankAccountException e) {
 							e.printStackTrace();
 						}
+						break;
 					}
 				}
 			}
