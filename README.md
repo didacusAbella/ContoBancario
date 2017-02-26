@@ -1,2 +1,4 @@
 # ContoBancario
-Progetto non corsisti per l'esami di PROGII (2017), Università di Salerno.
+Progetto non corsisti del 2017 per l'esame di Programmazione II, Università di Salerno.
+~
+Project for the examination of Programming II in 2017, University of Salerno.
