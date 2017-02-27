@@ -227,7 +227,7 @@ public class OperatorFrame extends JFrame {
 		amountTextField1.setColumns(10);
 		bottomMovePanel.add(amountTextField1);
 
-		JLabel valueLabel1 = new JLabel("â‚¬");
+		JLabel valueLabel1 = new JLabel("€");
 		bottomMovePanel.add(valueLabel1);
 
 		// Deposit Panel
@@ -259,7 +259,7 @@ public class OperatorFrame extends JFrame {
 		amountTextField2.setColumns(10);
 		bottomDPanel.add(amountTextField2);
 
-		JLabel valueLabel2 = new JLabel("â‚¬");
+		JLabel valueLabel2 = new JLabel("€");
 		bottomDPanel.add(valueLabel2);
 
 		// Withdraw Panel
@@ -289,7 +289,7 @@ public class OperatorFrame extends JFrame {
 		amountTextField3.setColumns(10);
 		bottomWPanel.add(amountTextField3);
 
-		JLabel valueLabel3 = new JLabel("â‚¬");
+		JLabel valueLabel3 = new JLabel("€");
 		bottomWPanel.add(valueLabel3);
 
 		// Interest Panel
@@ -348,7 +348,7 @@ public class OperatorFrame extends JFrame {
 		amountTextField4.setColumns(10);
 		bottomPlafondPanel.add(amountTextField4);
 
-		JLabel valueLabel4 = new JLabel("â‚¬");
+		JLabel valueLabel4 = new JLabel("€");
 		bottomPlafondPanel.add(valueLabel4);
 
 		// Buttons Radio Listners
@@ -408,7 +408,7 @@ public class OperatorFrame extends JFrame {
 									try {
 										trn.run("move");
 										generator.addTransition(trn);
-										JOptionPane.showMessageDialog(null, "Move " + amountTextField1.getText() + "â‚¬ from " + 
+										JOptionPane.showMessageDialog(null, "Move " + amountTextField1.getText() + "€ from " + 
 												b1.getIban() + "(" + b1.getAccountHolder().getName() + " " + b1.getAccountHolder().getSurname() + ") to " +
 												b2.getIban() + "(" + b2.getAccountHolder().getName() + " " + b2.getAccountHolder().getSurname() + ")." 
 										);
@@ -431,7 +431,7 @@ public class OperatorFrame extends JFrame {
 						try {
 							trn.run("add");
 							generator.addTransition(trn);
-							JOptionPane.showMessageDialog(null, "Deposit " + amountTextField2.getText() + "â‚¬ to " + 
+							JOptionPane.showMessageDialog(null, "Deposit " + amountTextField2.getText() + "€ to " + 
 									b.getIban() + "(" + b.getAccountHolder().getName() + " " + b.getAccountHolder().getSurname() + ")."
 							);
 						} catch (IllegalBankAccountException e) {
@@ -449,7 +449,7 @@ public class OperatorFrame extends JFrame {
 						try {
 							trn.run("withdraw");
 							generator.addTransition(trn);
-							JOptionPane.showMessageDialog(null, "Withdraw " + amountTextField3.getText() + "â‚¬ to " + 
+							JOptionPane.showMessageDialog(null, "Withdraw " + amountTextField3.getText() + "€ to " + 
 									b.getIban() + "(" + b.getAccountHolder().getName() + " " + b.getAccountHolder().getSurname() + ")."
 							);
 						} catch (IllegalBankAccountException e) {
@@ -501,7 +501,7 @@ public class OperatorFrame extends JFrame {
 						try {
 							trn.run("plafond");
 							generator.addTransition(trn);
-							JOptionPane.showMessageDialog(null, "Set " + amountTextField4.getText() + "â‚¬ of plafondo to " +
+							JOptionPane.showMessageDialog(null, "Set " + amountTextField4.getText() + "€ of plafondo to " +
 									b.getIban() + "(" + b.getAccountHolder().getName() + " " + b.getAccountHolder().getSurname() + ")."
 							);
 						} catch (IllegalBankAccountException e) {

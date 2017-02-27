@@ -65,7 +65,7 @@ public class CreditCard extends BankAccount {
 	@Override
 	public String toFormat() {
 		return super.toFormat() +
-				"\t\t" + "plf: " + CreditCard.CREDIT_PLAFOND + "â‚¬";
+				"\t\t" + "plf: " + CreditCard.CREDIT_PLAFOND + "€";
 	}
 
 	/**

@@ -80,7 +80,7 @@ public class CheckingAccount extends BankAccount {
 	@Override
 	public String toFormat() {
 		return super.toFormat() +
-				"\t\t" + "plf: " + this.plafond + "â‚¬" ;
+				"\t\t" + "plf: " + this.plafond + "€" ;
 	}
 
 	/**

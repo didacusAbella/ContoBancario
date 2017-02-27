@@ -98,7 +98,7 @@ public class BankAccount implements Cloneable {
 				this.iban + " " +
 				this.accountHolder.getName() + " " + 
 				this.accountHolder.getSurname() + "\t" +
-				this.balance + "â‚¬";
+				this.balance + "€";
 	}
 
 	/**
