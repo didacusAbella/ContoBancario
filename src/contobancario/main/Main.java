@@ -7,7 +7,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import contobancario.exceptions.IllegalBankAccountException;
 import contobancario.gui.LoginFrame;
-import contobancario.gui.OperatorFrame;
 import contobancario.utils.Generator;
 
 /**
@@ -20,7 +19,7 @@ public class Main {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			Generator generator = new Generator();
-			LoginFrame login = new LoginFrame(generator);
+			new LoginFrame(generator);
 		} catch (ClassNotFoundException e) {
 			System.err.println("Class Error:" + e);
 		} catch (InstantiationException e) {
