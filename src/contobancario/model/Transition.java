@@ -137,19 +137,19 @@ public class Transition implements Cloneable {
 			return 
 					this.date.get(GregorianCalendar.DAY_OF_MONTH) + "/" + (this.date.get(GregorianCalendar.MONTH) + 1) + "/" + this.date.get(GregorianCalendar.YEAR) +
 					" " + this.date.get(GregorianCalendar.HOUR_OF_DAY) + ":" + this.date.get(GregorianCalendar.MINUTE) + " - " +
-					"Move " + this.amount + "€ from " + this.account.getIban() + " to " + this.toAccount.getIban() + ".";
+					"Move " + this.amount + "\u20ac from " + this.account.getIban() + " to " + this.toAccount.getIban() + ".";
 		}
 		if (this.type.equals("add")) {
 			return
 					this.date.get(GregorianCalendar.DAY_OF_MONTH) + "/" + (this.date.get(GregorianCalendar.MONTH) + 1) + "/" + this.date.get(GregorianCalendar.YEAR) + 
 					" " + this.date.get(GregorianCalendar.HOUR_OF_DAY) + ":" + this.date.get(GregorianCalendar.MINUTE) + " - " +
-					"Deposit " + this.amount + "€ to " +this.account.getIban() + ".";
+					"Deposit " + this.amount + "\u20ac to " +this.account.getIban() + ".";
 		} 
 		if (this.type.equals("withdraw")) {
 			return 
 					this.date.get(GregorianCalendar.DAY_OF_MONTH) + "/" + (this.date.get(GregorianCalendar.MONTH) + 1) + "/" + this.date.get(GregorianCalendar.YEAR) +
 					" " + this.date.get(GregorianCalendar.HOUR_OF_DAY) + ":" + this.date.get(GregorianCalendar.MINUTE) + " - " +
-					"Withdraw " + this.amount + "€ to " +this.account.getIban() + ".";
+					"Withdraw " + this.amount + "\u20ac to " +this.account.getIban() + ".";
 		}
 		if (this.type.equals("interest")) {
 			return 
@@ -167,7 +167,7 @@ public class Transition implements Cloneable {
 			return 
 					this.date.get(GregorianCalendar.DAY_OF_MONTH) + "/" + (this.date.get(GregorianCalendar.MONTH) + 1) + "/" + this.date.get(GregorianCalendar.YEAR) + 
 					" " + this.date.get(GregorianCalendar.HOUR_OF_DAY) + ":" + this.date.get(GregorianCalendar.MINUTE) + " - " +
-					"Set " + this.plafond + "€ of plafond to " + this.account.getIban() + ".";
+					"Set " + this.plafond + "\u20ac of plafond to " + this.account.getIban() + ".";
 		}
 		return null;
 	}
