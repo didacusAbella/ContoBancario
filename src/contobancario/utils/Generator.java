@@ -58,9 +58,9 @@ public class Generator {
 	 * 
 	 */
 	private void generateClientRecord() {
-		ClientRecord client1 = new ClientRecord("Antonio", "Terrano", new GregorianCalendar(1997, 1, 22), "Angri");
-		ClientRecord client2 = new ClientRecord("Macco", "Ferraioli", new GregorianCalendar(1993,  6, 30), "Angri");
-		ClientRecord client3 = new ClientRecord("Francesca", "Nappi", new GregorianCalendar(1996, 8, 2), "Sant'Egidio");
+		ClientRecord client1 = new ClientRecord("Antonio", "Terrano", new GregorianCalendar(1997, 8, 18), "Angri");
+		ClientRecord client2 = new ClientRecord("Macco", "Ferraioli", new GregorianCalendar(1997,  2, 25), "Angri");
+		ClientRecord client3 = new ClientRecord("Francesca", "Nappi", new GregorianCalendar(1996, 7, 12), "Sant'Egidio");
 
 		this.clientRecords.add(client1);
 		this.clientRecords.add(client2);
